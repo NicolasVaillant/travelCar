@@ -1,0 +1,259 @@
+body {
+  background: #fff;
+  position: relative;
+}
+body main {
+  width: 100%;
+  height: auto;
+}
+body main .header {
+  height: auto;
+  padding: 2em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+body main .header .group_m {
+  width: 100%;
+}
+body main .header .group_m label {
+  width: 100%;
+  white-space: nowrap;
+  gap: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
+body main .header .group_m label select {
+  width: 100%;
+  border: 1px solid black;
+  outline: #399BA1;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+body main .header .content--beforeTravel {
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  gap: 0.5em;
+}
+body main .header .content--beforeTravel div[class^=shortcut] div,
+body main .header .content--beforeTravel .banner--timer {
+  background: #F0F0F0;
+  padding: 1em;
+  border-radius: 5px;
+  width: 100%;
+}
+body main .header .content--beforeTravel .shortcuts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.5em;
+}
+body main .header .content--beforeTravel .banner--timer {
+  width: 100%;
+}
+body main .header.travel--on--style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  align-items: flex-start !important;
+}
+body main .header.travel--on--style .group_m {
+  width: 100% !important;
+}
+body main .header.travel--on--style .group_m label {
+  width: auto;
+  justify-content: flex-start !important;
+}
+body main .header.travel--on--style .group_m label select {
+  width: fit-content !important;
+}
+body main .header.travel--on--style .content--beforeTravel {
+  width: 100% !important;
+  align-items: flex-end;
+}
+body main .header.travel--on--style .content--beforeTravel .shortcuts {
+  width: auto !important;
+  height: auto !important;
+}
+body main .header.travel--on--style .content--beforeTravel .shortcuts div[class^=shortcut] {
+  border-radius: 1000px !important;
+  width: 8vh;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+body main .header.travel--on--style .banner--timer {
+  display: none !important;
+}
+body main .content {
+  height: auto;
+  width: 100%;
+  padding: 0 1em;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+body main .content .timeline {
+  height: 100%;
+  width: 100%;
+  padding-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+body main .content .timeline .timeline--start,
+body main .content .timeline .timeline--end {
+  background: #727a7a;
+  color: #fff;
+  min-width: 20vw;
+  width: fit-content;
+  padding: 0.5em;
+  border-radius: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  z-index: 1000 !important;
+}
+body main .content .timeline .timeline--line {
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  gap: 0.1em;
+}
+body main .content .timeline .timeline--line .container {
+  transition: all 0.5s !important;
+}
+body main .content .timeline .timeline--line .container:first-child {
+  margin-top: 8px;
+}
+body main .content .timeline .timeline--line .container:last-child {
+  margin-bottom: 8px;
+}
+body main .content .timeline .timeline--line--draw {
+  position: absolute;
+  border: 2px solid #c5c5c5;
+  width: 0;
+  min-height: 10vh;
+  height: auto;
+  z-index: 0;
+  transition: all 0.5s !important;
+}
+body main .content .clients {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 49%;
+  height: fit-content;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  gap: 1.2em;
+}
+body main.disabled--main:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #494949;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+}
+body .modal {
+  z-index: 99999;
+  min-width: 200px;
+  width: 80%;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background: #fff;
+  box-shadow: 0 6px 16px 0 #565656;
+  border-radius: 15px;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+body .modal h3 {
+  color: #8D8D8D;
+}
+body .modal .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  margin-top: 1em;
+  gap: 1em;
+}
+body .modal .content label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  color: #c5c5c5;
+  width: 100%;
+}
+body .modal .content label select {
+  width: 100%;
+  border: 1px solid black;
+  outline: #399BA1;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+body .modal .content button {
+  width: 100%;
+  outline: none;
+  background: #399BA1;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+/*# sourceMappingURL=main.css.map */

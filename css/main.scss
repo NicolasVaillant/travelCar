@@ -1,0 +1,318 @@
+@charset "utf-8";
+
+@mixin flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+@mixin flexRow{
+    flex-direction: row;
+}
+@mixin flexCol{
+    flex-direction: column;
+}
+@mixin justify-left{
+    align-items: flex-start;
+}
+@mixin tn-50{
+    width: 50%;
+}
+@mixin tn-flex-row{
+    @include flex;
+    @include flexRow;
+}
+@mixin tn-flex-column{
+    @include flex;
+    @include flexCol;
+}
+
+//COLORS---------------
+$white : #fff;
+$grey : #636363;
+$grey2 : #c5c5c5;
+$grey3 : #8D8D8D;
+$green : #399BA1;
+//COLORS---------------
+
+//PARAMETERS-----------
+$border1 : 5px;
+$border2 : 15px;
+$padding1 : 1em;
+$padding2 : 2em;
+//PARAMETERS-----------
+
+body{
+    background: $white;
+    position: relative;
+
+    main{
+        width: 100%;
+        height: auto;
+
+        .header{
+            height: auto;
+            padding: $padding2 $padding1;
+
+            @include tn-flex-column;
+            @include justify-left;
+
+            gap: .5em;
+
+            @mixin element{
+                background: #F0F0F0;
+                padding: $padding1;
+                border-radius: $border1;
+                width: 100%;
+            }
+
+            .group_m{
+                width: 100%;
+                label{
+                    width: 100%;
+                    white-space: nowrap;
+                    gap: 1em;
+                    @include tn-flex-row;
+
+                    select{
+                        width: 100%;
+                        border: 1px solid black;
+                        outline: $green;
+                        padding: .5em;
+                        border-radius: $border1;
+                    }
+                }
+            }
+
+
+
+            .content--beforeTravel{
+                $h : .5em;
+
+                height: auto;
+                width: 100%;
+
+
+                @include tn-flex-column;
+                gap: $h;
+
+                div[class^="shortcut"] div,
+                .banner--timer{
+                    @include element;
+                }
+
+                .shortcuts{
+                    @include tn-flex-row;
+                    width: 100%;
+                    gap: $h;
+                }
+
+                .banner--timer{
+                    width: 100%;
+                }
+
+            }
+        }
+        .header.travel--on--style{
+            @include tn-flex-row;
+            align-items: flex-start!important;
+
+            .group_m{
+                width: 100%!important;
+
+                label{
+                    width: auto;
+                    justify-content: flex-start!important;
+
+                    select{
+                        width: fit-content!important;
+                    }
+                }
+            }
+            .content--beforeTravel{
+                width: 100%!important;
+                align-items: flex-end;
+
+                .shortcuts{
+                    width: auto!important;
+                    height: auto!important;
+
+                    div[class^="shortcut"]{
+                        border-radius: 1000px!important;
+                        width: 8vh;
+                        height: 8vh;
+
+                        @include flex;
+                    }
+                }
+            }
+            .banner--timer{
+                display: none!important;
+            }
+        }
+
+        .content{
+            height: auto;
+            width: 100%;
+            padding: 0 $padding1;
+            overflow-x: hidden;
+            overflow-y: hidden;
+
+            @include tn-flex-column;
+
+            .timeline{
+                height: 100%;
+                width: 100%;
+                padding-bottom: 2em;
+
+                @include tn-flex-column;
+
+                @mixin labels{
+                    background: #727a7a;
+                    color: $white;
+                    min-width: 20vw;
+                    width: fit-content;
+                    padding: .5em;
+                    border-radius: 1000px;
+
+                    @include flex;
+                }
+
+                .timeline--start,
+                .timeline--end{
+                    @include labels;
+                    z-index: 1000!important;
+                }
+
+                .timeline--line{
+                    width: 100%;
+                    z-index: 1;
+
+                    @include tn-flex-column;
+                    gap: .1em;
+                    $value : 8px;
+
+                    .container{
+                        transition: all .5s!important;
+                    }
+
+                    .container:first-child{
+                        margin-top: $value;
+                    }
+                    .container:last-child{
+                        margin-bottom: $value;
+                    }
+                }
+
+                .timeline--line--draw{
+                    position: absolute;
+                    border: 2px solid $grey2;
+                    width: 0;
+                    min-height: 10vh;
+                    height: auto;
+                    z-index: 0;
+                    transition: all .5s!important;
+                }
+            }
+
+            .clients{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 49%;
+                height: fit-content;
+                z-index: 1000;
+
+                @include tn-flex-row;
+                gap: 1.2em;
+
+                //@supports (mix-blend-mode: screen) {
+                //    &:after{
+                //        content: '';
+                //        background: linear-gradient(270deg, #1100ff, #00c4ff);
+                //        position: absolute;
+                //        top: 0;
+                //        left: 0;
+                //        height: 100%;
+                //        width: 100%;
+                //        mix-blend-mode: screen;
+                //        pointer-events: none;
+                //    }
+                //}
+            }
+        }
+    }
+    main.disabled--main{
+        &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #494949;
+            opacity: .75;
+            height: 100%;
+            width: 100%;
+            z-index: 9999;
+        }
+    }
+
+    .modal{
+        z-index: 99999;
+        min-width: 200px;
+        width: 80%;
+        //min-height: 30%;
+        height: fit-content;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        background: $white;
+        box-shadow: 0 6px 16px 0 #565656;
+        border-radius: $border2;
+        padding: $padding2;
+
+        @include tn-flex-column;
+        @include justify-left;
+
+        h3{
+            color: $grey3;
+        }
+
+        .content{
+            @include tn-flex-column;
+            @include justify-left;
+
+            width: 100%;
+            height: auto;
+            margin-top: 1em;
+            gap: 1em;
+
+            label{
+                @include tn-flex-column;
+                @include justify-left;
+                gap: .5em;
+                color: $grey2;
+                width: 100%;
+
+                select{
+                    width: 100%;
+                    border: 1px solid black;
+                    outline: $green;
+                    padding: .5em;
+                    border-radius: $border1;
+                }
+            }
+
+            button{
+                width: 100%;
+                outline: none;
+                background: $green;
+                color: $white;
+                border: 0;
+                border-radius: $border1;
+                padding: $padding1;
+            }
+        }
+
+    }
+}
