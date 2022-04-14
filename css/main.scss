@@ -97,41 +97,44 @@ body{
                 width: 100%;
 
                 @include tn-flex-column;
+                align-items: flex-start;
                 gap: $h;
 
+                div[class^="shortcut"] a{
+                    border: 1px solid $grey2;
+                }
                 div[class^="shortcut"] a,
                 .banner--timer{
                     @include element;
+                    text-decoration: none;
+                    color: black;
+
+                    @include flex;
                 }
 
                 .shortcuts{
                     @include tn-flex-row;
                     width: 100%;
                     gap: $h;
+                    font-size: 25px;
                 }
 
                 .banner--timer{
                     width: 100%;
+                    background: #fdb0b0;
                 }
-
+            }
+            label{
+                @include tn-flex-row;
+                gap: 1em;
+                white-space: nowrap;
+                width: 100%;
             }
         }
         .header.travel--on--style{
             @include tn-flex-column;
             align-items: flex-start!important;
 
-            .group_m{
-                width: 100%!important;
-
-                label{
-                    width: auto;
-                    justify-content: flex-start!important;
-
-                    select{
-                        width: fit-content!important;
-                    }
-                }
-            }
             .content--beforeTravel{
                 width: 100%!important;
                 @include tn-flex-row;

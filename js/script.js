@@ -149,17 +149,16 @@ async function createSteps(callback){
 
 
         if(steps_added[i] !== "") {
-            container.style.minHeight = heightContainer + "px"
 
             opt_added_title.innerHTML = "Précisions"
             opt_added_p.innerHTML = steps_added[i]
             opt_added.appendChild(opt_added_title)
             opt_added.appendChild(opt_added_p)
             container_options.appendChild(opt_added)
-        }else{
-            console.log("set default design")
-            container.style.minHeight = heightContainer + "px"
         }
+
+        console.log("Set default design")
+        container.style.minHeight = heightContainer + "px"
 
         line_1.appendChild(localisation_ico)
         line_1.appendChild(shortcut_localisation_text)
@@ -284,13 +283,18 @@ function submitModal(callback){
     container__options.forEach(e => {
         maxHeightContainer.push(e.offsetHeight)
     })
+    let maxHeight = Math.max(...maxHeightContainer)
 
+    console.log("Set new design")
     for (let i = 0; i < container.length; i++) {
         //TODO
         //Modification des offset à faire
         //Submit du modal nous assure que les offsetHeight/offsetTop sont définis
-        // container[i].style.minHeight = Math.max(...maxHeightContainer) + "px"
+
+        // container[i].style.minHeight = maxHeight + 20 + "px"
     }
+
+    console.log(maxHeight)
 
     const client = document.querySelectorAll('.client')
     client.forEach(e => {
@@ -298,7 +302,7 @@ function submitModal(callback){
         //Modification des offset à faire
         //Submit du modal nous assure que les offsetHeight/offsetTop sont définis
 
-        // e.style.top = Math.max(...maxHeightContainer) - clients.offsetTop + "px"
+        // e.style.top = maxHeight - clients.offsetTop + "px"
 
         if(e.dataset.name === steps_clients[name_value]){
             console.log("scrollIntoView : " + steps_clients[name_value])
