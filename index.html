@@ -1,9 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico.ico"/>
+    <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_16.png" sizes="16x16"/>
+    <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_32.png" sizes="32x32"/>
+    <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_48.png" sizes="48x48"/>
+    <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_64.png" sizes="64x64"/>
 
     <link rel="stylesheet" href="css/anim.css">
     <link rel="stylesheet" href="css/root.css">
@@ -13,40 +20,31 @@
     <script src="js/script.js" defer></script>
     
     <!-- TOOLS -->
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css">-->
-    
+    <link rel="stylesheet" href="fontawesome/css/all_used.css">
     <title>Thérence F. | Plan de route</title>
 </head>
 
 <body>
-
 <main class="disabled--main">
     <!--header infos-->
     <div class="header">
-        <div class="group_m">
-            <h1>Plan de route</h1>
-            <label for="name--main">Qui êtes-vous ?
-                <select name="name--main" id="name--main"></select>
-            </label>
-        </div>
-        
         <div class="content--beforeTravel">
+            <h1>Plan de route</h1>
             <div class="shortcuts">
-                <div class="shortcut--sms">
+                <a href="" class="shortcut--sms" aria-label="Raccourci SMS">
                     <i class="fas fa-comments"></i>
-                    <p>sms</p>
-                </div>
-                <div class="shortcut--call">
-                    <i class="fa-solid fa-phone"></i>
-                    <p>call</p>
-                </div>
+                </a>
+                <a href="" class="shortcut--call" aria-label="Raccourci Appel">
+                    <i class="fas fa-phone-alt"></i>
+                </a>
             </div>
             <div class="banner--timer">
                 <p class="time_left"></p>
             </div>
         </div>
-        
+        <label for="name--main">Qui êtes-vous ?
+            <select name="name--main" id="name--main"></select>
+        </label>
     </div>
     
     <!--timeline-->

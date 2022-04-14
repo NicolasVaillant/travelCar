@@ -1,3 +1,7 @@
+select {
+  line-height: 20px;
+}
+
 body {
   background: #fff;
   position: relative;
@@ -8,7 +12,7 @@ body main {
 }
 body main .header {
   height: auto;
-  padding: 2em 1em;
+  padding: 1.6em 1em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +37,6 @@ body main .header .group_m label {
 body main .header .group_m label select {
   width: 100%;
   border: 1px solid black;
-  outline: #399BA1;
   padding: 0.5em;
   border-radius: 5px;
 }
@@ -47,7 +50,7 @@ body main .header .content--beforeTravel {
   flex-direction: column;
   gap: 0.5em;
 }
-body main .header .content--beforeTravel div[class^=shortcut] div,
+body main .header .content--beforeTravel div[class^=shortcut] a,
 body main .header .content--beforeTravel .banner--timer {
   background: #F0F0F0;
   padding: 1em;
@@ -71,7 +74,7 @@ body main .header.travel--on--style {
   align-items: center;
   justify-content: center;
   align-content: center;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start !important;
 }
 body main .header.travel--on--style .group_m {
@@ -86,16 +89,24 @@ body main .header.travel--on--style .group_m label select {
 }
 body main .header.travel--on--style .content--beforeTravel {
   width: 100% !important;
-  align-items: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 body main .header.travel--on--style .content--beforeTravel .shortcuts {
   width: auto !important;
   height: auto !important;
 }
-body main .header.travel--on--style .content--beforeTravel .shortcuts div[class^=shortcut] {
+body main .header.travel--on--style .content--beforeTravel .shortcuts a[class^=shortcut] {
   border-radius: 1000px !important;
   width: 8vh;
   height: 8vh;
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,7 +253,6 @@ body .modal .content label {
 body .modal .content label select {
   width: 100%;
   border: 1px solid black;
-  outline: #399BA1;
   padding: 0.5em;
   border-radius: 5px;
 }

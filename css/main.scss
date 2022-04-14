@@ -40,7 +40,12 @@ $border1 : 5px;
 $border2 : 15px;
 $padding1 : 1em;
 $padding2 : 2em;
+$padding3 : 1.6em;
 //PARAMETERS-----------
+
+select{
+    line-height: 20px;
+}
 
 body{
     background: $white;
@@ -52,7 +57,7 @@ body{
 
         .header{
             height: auto;
-            padding: $padding2 $padding1;
+            padding: $padding3 $padding1;
 
             @include tn-flex-column;
             @include justify-left;
@@ -77,26 +82,22 @@ body{
                     select{
                         width: 100%;
                         border: 1px solid black;
-                        outline: $green;
+                        //outline: $green;
                         padding: .5em;
                         border-radius: $border1;
                     }
                 }
             }
 
-
-
             .content--beforeTravel{
                 $h : .5em;
-
                 height: auto;
                 width: 100%;
-
 
                 @include tn-flex-column;
                 gap: $h;
 
-                div[class^="shortcut"] div,
+                div[class^="shortcut"] a,
                 .banner--timer{
                     @include element;
                 }
@@ -114,7 +115,7 @@ body{
             }
         }
         .header.travel--on--style{
-            @include tn-flex-row;
+            @include tn-flex-column;
             align-items: flex-start!important;
 
             .group_m{
@@ -131,16 +132,20 @@ body{
             }
             .content--beforeTravel{
                 width: 100%!important;
-                align-items: flex-end;
+                @include tn-flex-row;
+                justify-content: space-between;
 
                 .shortcuts{
                     width: auto!important;
                     height: auto!important;
 
-                    div[class^="shortcut"]{
+                    a[class^="shortcut"]{
                         border-radius: 1000px!important;
                         width: 8vh;
                         height: 8vh;
+                        font-size: 25px;
+                        text-decoration: none;
+                        color: black;
 
                         @include flex;
                     }
@@ -297,7 +302,7 @@ body{
                 select{
                     width: 100%;
                     border: 1px solid black;
-                    outline: $green;
+                    //outline: $green;
                     padding: .5em;
                     border-radius: $border1;
                 }

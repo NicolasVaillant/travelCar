@@ -118,6 +118,26 @@ async function createSteps(callback){
         opt_added_p.classList.add('opt--added--p')
         const opt_added_title = document.createElement('p')
         opt_added_title.classList.add('opt--added--title')
+        const line_1 = document.createElement('div')
+        line_1.classList.add('shortcuts--maps')
+        //TODO : UX A DEF -------------------------------
+        const localisation_ico = document.createElement('i')
+        localisation_ico.classList.add('fas')
+        localisation_ico.classList.add('fa-map-marker-alt')
+        /**
+         *
+         line_1.appendChild(localisation_ico)
+         line_1.appendChild(opt_city)
+         container_options.appendChild(label_hour)
+         container_options.appendChild(line_1)
+         container_options.appendChild(opt_sub)
+         *
+         */
+        //-----------------------------------------------
+        const shortcut_localisation_text = document.createElement('p')
+        shortcut_localisation_text.classList.add('shortcut--localisation--text')
+        shortcut_localisation_text.innerHTML = "Voir sur un plan"
+        //-----------------------------------------------
 
         opt_city.innerHTML = steps_cities[i]
         opt_sub.innerHTML = steps_subtitles[i]
@@ -140,8 +160,23 @@ async function createSteps(callback){
             console.log("set default design")
             container.style.minHeight = heightContainer + "px"
         }
-        container.appendChild(container_options)
 
+        line_1.appendChild(localisation_ico)
+        line_1.appendChild(shortcut_localisation_text)
+        container_options.appendChild(line_1)
+
+        let url = ""
+        let localisation = steps_cities[i] + " " + steps_subtitles[i]
+        line_1.ontouchstart = function (e){
+            if(support === "Apple"){
+                url = "maps://maps.google.com/maps?q=" + localisation
+            }else{
+                url = "https://maps.google.com/maps?q=" + localisation
+            }
+            window.open(url)
+        }
+
+        container.appendChild(container_options)
         container.appendChild(dot)
         timeline__line.appendChild(container)
     }
@@ -408,7 +443,30 @@ function clientDisplay(value = name__modal.value){
     })
 }
 
+function setShortcutButton(){
+    const shortcut__sms = document.querySelector('.shortcut--sms')
+    const shortcut__call = document.querySelector('.shortcut--call')
+
+    let msg = "Salut%20Thérence%20,%20"
+
+    if(support === "Apple"){
+        shortcut__sms.href = "sms://open?addresses=+33667167160/&body=" + msg
+    }else{
+        shortcut__sms.href = "sms://+33667167160?body=" + msg
+    }
+
+    shortcut__call.href = "tel:+33667167160"
+}
+
+let support = ""
+
 window.onload = function (){
+
+    if((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1) || (navigator.platform.indexOf("iPad") !== -1)){
+        support = "Apple"
+    }else{
+        support = "Others"
+    }
 
     if (!localStorage.getItem("first_connection_timeCARLine") === true ||
         !localStorage.getItem("first_connection_timeCARLine") === "true") {
@@ -419,6 +477,8 @@ window.onload = function (){
 
         // localStorage.setItem("first_connection_timeCARLine", "true");
     }
+
+    setShortcutButton()
 
     setLabels(steps_clients, name__modal)
     setLabels(type_luggage, luggage__modal)
