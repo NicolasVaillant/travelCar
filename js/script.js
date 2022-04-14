@@ -34,62 +34,32 @@ function setNewDesign(){
 }
 
 function calcDate(iso){
-    //BROKEN
-    const date = new Date()
-    let d = date.getDate();
-    let h = date.getHours();
-    h < 10 ? h = "0" + h : h
+    const timeStart = new Date(iso).getTime()
+    const current = new Date().getTime()
 
-    const day = iso.split("T")[0]
-    const hour = iso.split("T")[1]
+    const hourDiff = current - timeStart //in ms
+    // console.log(hourDiff)
+    const hours = Math.abs(hourDiff) / 36e5 //in hours
+    const minDiff = hourDiff / 60000 //in minutes
 
-    let diff_days = Number(day.split("-")[2]) - d
-    let diff_hours = Number(hour.split(":")[0]) - h
+    const humanReadable = {}
+    humanReadable.day = (hours - hours % 24)/24
+    humanReadable.hours = Math.floor(hours % 24)
+    // humanReadable.minutes = (minDiff - 60) * Math.floor(hours)
 
-    let bwxmrlqv, twyxdmix
-
-    if(diff_days > 1){
-        if(diff_hours > 0){
-            bwxmrlqv = diff_days
-            twyxdmix = diff_hours
-        }else{
-            bwxmrlqv = diff_days
-            twyxdmix = 0
-        }
-    }else if(diff_days === 1){
-        bwxmrlqv = 0
-        twyxdmix = (24 - h) + Math.abs(diff_hours)
-    }else{
-        if(diff_hours < 0){
-            bwxmrlqv = 0
-            twyxdmix = diff_hours
-        }
-    }
-
-
-    return {
-        d : bwxmrlqv,
-        h : twyxdmix
-    }
+    return humanReadable
 }
 
 function displayTimeLeft(){
-    //BROKEN
     const date = calcDate(dayOfTravelISO)
-
-
-    if(date.d === 0){
-        if(date.h <= 0){
+    if(date.day === 0){
+        if(date.hours <= 0){
             setNewDesign()
         }else{
-            time_left.innerHTML = `Le trajet est prévu dans ${date.h} heure(s)`
+            time_left.innerHTML = `Le trajet est prévu dans ${date.hours} heure(s)`
         }
     }else{
-        if(date.d >= 1){
-            time_left.innerHTML = `Le trajet est prévu dans ${date.d} jours(s)`
-        }else{
-            time_left.innerHTML = `Le trajet est prévu dans ${date.d} jours(s) et ${date.h} heure(s)`
-        }
+        time_left.innerHTML = `Le trajet est prévu dans ${date.day} jours(s) et ${date.hours} heure(s)`
     }
 }
 
@@ -118,21 +88,12 @@ async function createSteps(callback){
         opt_added_p.classList.add('opt--added--p')
         const opt_added_title = document.createElement('p')
         opt_added_title.classList.add('opt--added--title')
-        const line_1 = document.createElement('div')
-        line_1.classList.add('shortcuts--maps')
+        const buttonToMap = document.createElement('button')
+        buttonToMap.classList.add('shortcuts--maps')
         //TODO : UX A DEF -------------------------------
         const localisation_ico = document.createElement('i')
         localisation_ico.classList.add('fas')
         localisation_ico.classList.add('fa-map-marker-alt')
-        /**
-         *
-         line_1.appendChild(localisation_ico)
-         line_1.appendChild(opt_city)
-         container_options.appendChild(label_hour)
-         container_options.appendChild(line_1)
-         container_options.appendChild(opt_sub)
-         *
-         */
         //-----------------------------------------------
         const shortcut_localisation_text = document.createElement('p')
         shortcut_localisation_text.classList.add('shortcut--localisation--text')
@@ -158,15 +119,15 @@ async function createSteps(callback){
         }
 
         console.log("Set default design")
-        container.style.minHeight = heightContainer + "px"
+        // container.style.minHeight = heightContainer + "px"
 
-        line_1.appendChild(localisation_ico)
-        line_1.appendChild(shortcut_localisation_text)
-        container_options.appendChild(line_1)
+        buttonToMap.appendChild(localisation_ico)
+        buttonToMap.appendChild(shortcut_localisation_text)
+        container_options.appendChild(buttonToMap)
 
         let url = ""
         let localisation = steps_cities[i] + " " + steps_subtitles[i]
-        line_1.ontouchstart = function (e){
+        buttonToMap.ontouchstart = function (e){
             if(support === "Apple"){
                 url = "maps://maps.google.com/maps?q=" + localisation
             }else{
@@ -187,6 +148,8 @@ async function createSteps(callback){
 function setHeight(){
     const label__hour = document.querySelectorAll('.label--hour')
     const dot__step = document.querySelectorAll('.dot--step')
+
+    // console.log(timeline__line)
 
     let timelineTop = timeline__line.offsetTop
     let timelineHeight = timeline__line.offsetHeight
@@ -268,7 +231,7 @@ function setClients(){
 }
 
 function submitModal(callback){
-    let arrayDataClients = [], maxHeightContainer = []
+    let arrayDataClients = []
     button_modal.closest('.modal').classList.add('close--modal')
     main.classList.remove('disabled--main')
     body.classList.remove('disabled--body')
@@ -278,12 +241,7 @@ function submitModal(callback){
 
     name__main.selectedIndex = name_value
 
-    const container__options = document.querySelectorAll('.container--options')
     const container = document.querySelectorAll('.container')
-    container__options.forEach(e => {
-        maxHeightContainer.push(e.offsetHeight)
-    })
-    let maxHeight = Math.max(...maxHeightContainer)
 
     console.log("Set new design")
     for (let i = 0; i < container.length; i++) {
@@ -294,7 +252,7 @@ function submitModal(callback){
         // container[i].style.minHeight = maxHeight + 20 + "px"
     }
 
-    console.log(maxHeight)
+    // console.log(maxHeight)
 
     const client = document.querySelectorAll('.client')
     client.forEach(e => {
@@ -363,12 +321,12 @@ function changeDisplayClients(e){
             container.style.minHeight = "0px"
         }else{
             container.classList.remove("remove--display--client")
-            container.style.minHeight = heightContainer + "px"
+            container.style.minHeight = minHeight + "px"
         }
     }
 
-    setOffsetTopClient(heightContainer)
-    setLineDrawHeight(diff, heightContainer)
+    setOffsetTopClient(minHeight)
+    setLineDrawHeight(diff, minHeight)
 
 }
 
@@ -432,14 +390,14 @@ function clientDisplay(value = name__modal.value){
         let a = new Element(e)
 
         if(e.dataset.name !== steps_clients[value]){
-            if(date.d === 0 && date.h <= 0){
                 a.remove()
+            if(date.day === 0 && date.hours <= 0){
             }else{
                 a.modify()
             }
         }else{
-            if(date.d === 0 && date.h <= 0){
                 a.show("remove")
+            if(date.day === 0 && date.hours <= 0){
             }else{
                 a.show("modify")
             }
@@ -462,8 +420,11 @@ function setShortcutButton(){
     shortcut__call.href = "tel:+33667167160"
 }
 
-let support = ""
+function setTimeLine(){
+    console.log("o")
+}
 
+let support = ""
 window.onload = function (){
 
     if((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1) || (navigator.platform.indexOf("iPad") !== -1)){
@@ -489,14 +450,31 @@ window.onload = function (){
     setLabels(steps_clients, name__main)
 
     displayTimeLeft()
-    createSteps(setHeight).then(
+    createSteps(containerHeight).then(
         () => {
+            setHeight()
             setClients()
+            setTimeLine()
         },
         (error) => {
-            console.alert(error)
+            console.log(error)
         }
     )
+}
+
+let minHeight = 0
+
+function containerHeight(){
+    let maxHeightContainer = []
+    const container = document.querySelectorAll('.container')
+    container.forEach(e => {
+        maxHeightContainer.push(e.querySelector('.container--options').offsetHeight)
+    })
+    minHeight = Math.max(...maxHeightContainer) + 20
+    container.forEach(e => {
+        e.style.minHeight = minHeight + "px"
+    })
+    console.log("minHeight container : " + minHeight)
 }
 
 

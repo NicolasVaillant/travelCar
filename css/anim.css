@@ -68,6 +68,9 @@
     align-content: center;
     gap: .5em;
     margin-top: 0.5em;
+    outline: none;
+    border: 0;
+    background: none;
 }
 .shortcuts--maps p{
     text-decoration: underline;

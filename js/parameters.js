@@ -1,7 +1,7 @@
 //JS FILE
 
 //Date ISO pls YYYY-MM-DD
-const dayOfTravel = "2022-04-11"
+const dayOfTravel = "Apr 18 2022"
 
 const colors = [
     "#fff",
@@ -73,6 +73,6 @@ const type_luggage = [
 
 //A REGROUPED ----------------------------------------------
 
-const dayOfTravelISO = dayOfTravel.concat("T", steps_hours[0])
+const dayOfTravelISO = dayOfTravel.concat(" ", steps_hours[0])
 
 
