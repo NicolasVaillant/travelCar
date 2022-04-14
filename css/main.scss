@@ -45,6 +45,8 @@ $padding3 : 1.6em;
 
 select{
     line-height: 20px;
+    height: 3em!important;
+    width: 100% !important;
 }
 
 body{
@@ -150,6 +152,12 @@ body{
                         @include flex;
                     }
                 }
+            }
+            label{
+                @include tn-flex-row;
+                gap: 1em;
+                white-space: nowrap;
+                width: 100%;
             }
             .banner--timer{
                 display: none!important;

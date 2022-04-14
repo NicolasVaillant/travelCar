@@ -1,5 +1,7 @@
 select {
   line-height: 20px;
+  height: 3em !important;
+  width: 100% !important;
 }
 
 body {
@@ -111,6 +113,16 @@ body main .header.travel--on--style .content--beforeTravel .shortcuts a[class^=s
   align-items: center;
   justify-content: center;
   align-content: center;
+}
+body main .header.travel--on--style label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  gap: 1em;
+  white-space: nowrap;
+  width: 100%;
 }
 body main .header.travel--on--style .banner--timer {
   display: none !important;
