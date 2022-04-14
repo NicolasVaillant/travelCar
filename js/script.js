@@ -390,14 +390,14 @@ function clientDisplay(value = name__modal.value){
         let a = new Element(e)
 
         if(e.dataset.name !== steps_clients[value]){
-                a.remove()
             if(date.day === 0 && date.hours <= 0){
+                a.remove()
             }else{
                 a.modify()
             }
         }else{
-                a.show("remove")
             if(date.day === 0 && date.hours <= 0){
+                a.show("remove")
             }else{
                 a.show("modify")
             }
