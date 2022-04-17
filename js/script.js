@@ -270,6 +270,20 @@ function submitModal(callback){
 
     arrayDataClients.push(steps_clients[name_value], type_luggage[luggage_value])
     //POST arrayDataClients to store clients preferences
+    $.ajax({
+        type : "POST",
+        url  : "../php/store_client_data.php",
+        data : { name : steps_clients[name_value], type_luggage : type_luggage[luggage_value] }
+    });
+    // In other way, try to get the luggage :
+    $.ajax({
+        type : "POST",
+        url  : "../php/get_client_data.php",
+        data : { name : steps_clients[name_value] },
+        success: function(res) {
+            console.log(steps_clients[name_value] + " -> " + res)
+        }
+    });
 
     callback()
 }
