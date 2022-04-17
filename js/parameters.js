@@ -10,65 +10,56 @@ const colors = [
 //A REGROUPED ----------------------------------------------
 
 const steps_hours = [
-    "12:00:00",
-    "13:30:00",
-    "15:20:00",
-    "15:20:00",
-    "16:20:00",
-    "18:00:00"
+    "14:10:00",
+    "15:15:00",
+    "17:45:00",
+    "19:09:00"
 ]
 
 const steps_cities = [
-    "Saint-Etienne",
-    "Clermont-ferrand",
-    "Bourges",
-    "Clermont-ferrand",
+    "Chartres",
     "La Chapelle-Saint-Mesmin",
-    "Chartres"
+    "Clermont-Ferrand",
+    "Saint-Etienne"
 ]
 
 const steps_subtitles = [
-    "Parking de la Croquetterie",
-    "Impasse des Roseraies",
-    "Parking du Tour",
-    "Impasse des Roseraies",
-    "Sortie Sud n°123",
-    "Gare ferroviaire"
+    "Gare de Chartres",
+    "Parking de covoiturage VINCI Autoroutes La Chapelle-Saint-Mesmin (45380)",
+    "Parking IKEA, 19 Bd Louis Chartoire Clermont-Ferrand (63100)",
+    "Gare Chateaucreux"
 ]
 
 const steps_added = [
-    "Allée Sud",
     "",
-    "En face du Super U",
     "",
-    "En face du Super U",
     "",
+    "Selon convenance (à préciser durant le trajet)"
 ]
 
 //A REGROUPED ----------------------------------------------
 
 const steps_clients = [
-    "TEST",
-    "Julie",
-    "Bob",
-    "Léa",
-    "Tom"
+    "Kim",
+    "Myriam",
+    "Lucie"
 ]
 
 const path = [
-    "0-5",
-    "0-3",
-    "1-4",
-    "2-4",
-    "1-2"
+    "1-3",
+    "1-3",
+    "2-3"
 ]
 
 //A REGROUPED ----------------------------------------------
 
 const type_luggage = [
     "Sac à dos",
-    "Valise cabine",
-    "Valise"
+    "Sac de sport",
+    "Grand sac",
+    "Grande valise",
+    "Petite valise",
+    "Autre (à préciser par SMS)"
 ]
 
 //A REGROUPED ----------------------------------------------
