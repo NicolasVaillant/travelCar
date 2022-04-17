@@ -101,7 +101,7 @@ async function createSteps(callback){
         opt_added_p.classList.add('opt--added--p')
         const opt_added_title = document.createElement('p')
         opt_added_title.classList.add('opt--added--title')
-        const buttonToMap = document.createElement('button')
+        const buttonToMap = document.createElement('a')
         buttonToMap.classList.add('shortcuts--maps')
         //TODO : UX A DEF -------------------------------
         const localisation_ico = document.createElement('i')
@@ -139,14 +139,10 @@ async function createSteps(callback){
 
         let url = ""
         let localisation = steps_cities[i] + " " + steps_subtitles[i]
-        buttonToMap.onclick = () => {
-            // if(support === "Apple"){
-            //     url = "https://maps.apple.com?q=" + localisation
-            // }else{
-            //     url = "https://maps.google.com/maps?q=" + localisation
-            // }
-            url = "https://google.com/maps?q=" + localisation
-            window.open(url)
+        if(support === "Apple"){
+            buttonToMap.href = "https://maps.apple.com?q=" + localisation
+        }else{
+            buttonToMap.href = "https://maps.google.com/maps?q=" + localisation
         }
 
         container.appendChild(container_options)
