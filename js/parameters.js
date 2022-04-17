@@ -1,7 +1,7 @@
 //JS FILE
 
 //Date ISO pls YYYY-MM-DD
-const dayOfTravel = "Apr 18 2022"
+const dayOfTravel = "Apr 17 2022"
 
 const colors = [
     "#fff",

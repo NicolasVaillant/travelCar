@@ -216,9 +216,22 @@ function setClients(){
         dot_end.classList.add('dot--end')
         const client_container = document.createElement('div')
         client_container.classList.add('client--container')
+
+        if(steps_clients[i].length >= 6){
+            client_container.classList.add('tn--long')
+
+        }
         const client_name = document.createElement('div')
         client_name.classList.add('client--name')
         client_name.innerHTML = steps_clients[i]
+        const client_ico = document.createElement('i')
+        client_ico.classList.add('fas')
+        client_ico.classList.add('fa-user-plus')
+        const client_in_car = document.createElement('p')
+        client_in_car.classList.add('client--in--car')
+        let client_col = 0
+        client_in_car.innerHTML = `${client_col}`
+        client_in_car.appendChild(client_ico)
 
         let pathSeg = path[i].split("-")
         let start = pathSeg[0]
@@ -236,6 +249,7 @@ function setClients(){
         client.appendChild(dot_start)
         client.appendChild(dot_end)
         client_container.appendChild(client_name)
+        client_container.appendChild(client_in_car)
         client.appendChild(client_container)
 
         clients.appendChild(client)

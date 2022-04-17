@@ -125,6 +125,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transition: all .5s!important;
+    display: flex;
+    height: auto;
+    /*background: red;*/
+    gap: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column;
+}
+.tn--long{
+    transform: translate(-25%, -50%) !important;
 }
 .client--name{
     color: black!important;
@@ -133,7 +144,16 @@
     border-radius: 1000px;
     border: 2px solid #83b0f2;
 }
-
+.client--in--car{
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(75%, -50%);
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 0.4em;
+}
 .client{
     width: 4vw;
     min-width: 20px;
