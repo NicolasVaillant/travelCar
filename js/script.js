@@ -1,5 +1,6 @@
 //JS FILE
 
+
 /**
  * Si on prend en compte le décalage d'une étape :
  * - Modifier "-1" (L.271 : f.changeDisplayClients)
@@ -9,6 +10,7 @@
 const time_left = document.querySelector('.time_left')
 const timeline__line = document.querySelector('.timeline--line')
 const timeline__line__draw = document.querySelector('.timeline--line--draw')
+const timeline__line__evolution = document.querySelector('.timeline--line--evolution')
 const header = document.querySelector('.header')
 const clients = document.querySelector('.clients')
 
@@ -34,18 +36,27 @@ function setNewDesign(){
 }
 
 function calcDate(iso){
-    const timeStart = new Date(iso).getTime()
-    const current = new Date().getTime()
-
-    const hourDiff = current - timeStart //in ms
-    // console.log(hourDiff)
-    const hours = Math.abs(hourDiff) / 36e5 //in hours
-    const minDiff = hourDiff / 60000 //in minutes
+    const date_iso = new Date(iso)
+    const today = new Date()
 
     const humanReadable = {}
-    humanReadable.day = (hours - hours % 24)/24
-    humanReadable.hours = Math.floor(hours % 24)
-    // humanReadable.minutes = (minDiff - 60) * Math.floor(hours)
+
+    const diffMs = (date_iso - today) // milliseconds
+    const diffDays = Math.floor(diffMs / 86400000) // days
+    const diffHrs = Math.floor((diffMs % 86400000) / 3600000) // hours
+    const diffMin = Math.ceil(((diffMs % 86400000) % 3600000) / 60000) // minutes
+
+    if(diffMs < 60000){
+        humanReadable.day = 0
+        humanReadable.hours = 0
+        humanReadable.minutes = 0
+    }else {
+        humanReadable.day = diffDays
+        humanReadable.hours = diffHrs
+        humanReadable.minutes = diffMin
+    }
+
+    console.log(humanReadable)
 
     return humanReadable
 }
@@ -54,9 +65,11 @@ function displayTimeLeft(){
     const date = calcDate(dayOfTravelISO)
     if(date.day === 0){
         if(date.hours <= 0){
-            setNewDesign()
+            if(date.minutes <= 0){
+                setNewDesign()
+            }
         }else{
-            time_left.innerHTML = `Le trajet est prévu dans ${date.hours} heure(s)`
+            time_left.innerHTML = `Le trajet est prévu dans ${date.hours} heure(s) et ${date.minutes} minute(s)`
         }
     }else{
         time_left.innerHTML = `Le trajet est prévu dans ${date.day} jours(s) et ${date.hours} heure(s)`
@@ -110,7 +123,6 @@ async function createSteps(callback){
 
 
         if(steps_added[i] !== "") {
-
             opt_added_title.innerHTML = "Précisions"
             opt_added_p.innerHTML = steps_added[i]
             opt_added.appendChild(opt_added_title)
@@ -127,9 +139,9 @@ async function createSteps(callback){
 
         let url = ""
         let localisation = steps_cities[i] + " " + steps_subtitles[i]
-        buttonToMap.ontouchstart = function (e){
+        buttonToMap.ontouchstart = () => {
             if(support === "Apple"){
-                url = "maps://maps.google.com/maps?q=" + localisation
+                url = "https://maps.apple.com?q=" + localisation
             }else{
                 url = "https://maps.google.com/maps?q=" + localisation
             }
@@ -156,6 +168,9 @@ function setHeight(){
 
     timeline__line__draw.style.top = timelineTop + "px"
     timeline__line__draw.style.height = timelineHeight + "px"
+
+    timeline__line__evolution.style.top = timelineTop + "px"
+    timeline__line__evolution.style.maxHeight = timelineHeight + "px"
 
     dot__step.forEach((e, index) => {
         e.setAttribute("data-num", index.toString())
@@ -268,6 +283,8 @@ function submitModal(callback){
         }
     })
 
+    callback()
+
     arrayDataClients.push(steps_clients[name_value], type_luggage[luggage_value])
     //POST arrayDataClients to store clients preferences
     $.ajax({
@@ -285,7 +302,6 @@ function submitModal(callback){
         }
     });
 
-    callback()
 }
 
 function setLabels(arr, container){
@@ -434,8 +450,26 @@ function setShortcutButton(){
     shortcut__call.href = "tel:+33667167160"
 }
 
+function getCurrentTime(){
+    const date = new Date()
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    return {hours : hours, minutes : minutes}
+}
+
 function setTimeLine(){
-    console.log("o")
+
+    const dot__step = document.querySelectorAll('.dot--step')
+    const container = document.querySelectorAll('.container')
+    let stock_dot = [], stock_dot_e = [], stock_container = []
+
+    dot__step.forEach(e => {
+        stock_dot.push(e.offsetTop)
+        stock_dot_e.push(e.offsetHeight)
+    })
+    container.forEach(e => {
+        stock_container.push(e.offsetTop)
+    })
 }
 
 let support = ""

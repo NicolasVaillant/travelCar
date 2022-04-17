@@ -66,4 +66,3 @@ const type_luggage = [
 
 const dayOfTravelISO = dayOfTravel.concat(" ", steps_hours[0])
 
-

@@ -194,7 +194,8 @@ body main .content .timeline .timeline--line .container:first-child {
 body main .content .timeline .timeline--line .container:last-child {
   margin-bottom: 8px;
 }
-body main .content .timeline .timeline--line--draw {
+body main .content .timeline .timeline--line--draw,
+body main .content .timeline .timeline--line--evolution {
   position: absolute;
   border: 2px solid #c5c5c5;
   width: 0;
@@ -202,6 +203,13 @@ body main .content .timeline .timeline--line--draw {
   height: auto;
   z-index: 0;
   transition: all 0.5s !important;
+}
+body main .content .timeline .timeline--line--evolution {
+  width: 4px;
+  top: 314px;
+  max-height: 1182px;
+  background: #399BA1;
+  border: 0;
 }
 body main .content .clients {
   position: absolute;
