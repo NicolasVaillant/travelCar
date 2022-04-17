@@ -139,7 +139,7 @@ async function createSteps(callback){
 
         let url = ""
         let localisation = steps_cities[i] + " " + steps_subtitles[i]
-        buttonToMap.ontouchstart = () => {
+        buttonToMap.onclick = () => {
             // if(support === "Apple"){
             //     url = "https://maps.apple.com?q=" + localisation
             // }else{
