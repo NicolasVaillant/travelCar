@@ -1,14 +1,11 @@
 //JS FILE
 
-
-/**
- * Si on prend en compte le décalage d'une étape :
- * - Modifier "-1" (L.271 : f.changeDisplayClients)
- *
- */
+const dayOfTravelISO = dayOfTravel.concat(" ", steps_hours[0])
+const endTrip = dayOfTravel.concat(" ", steps_hours[steps_hours.length - 1])
 
 const time_left = document.querySelector('.time_left')
 const timeline__line = document.querySelector('.timeline--line')
+const timeline__start__label = document.querySelector('.timeline--start')
 const timeline__line__draw = document.querySelector('.timeline--line--draw')
 const timeline__line__evolution = document.querySelector('.timeline--line--evolution')
 const header = document.querySelector('.header')
@@ -29,54 +26,53 @@ const leftPosition = 30
 
 name__main.addEventListener('change', () => {
     clientDisplay(name__main.value)
-
-    // const timeline__line_change = document.querySelector('.timeline--line')
-    // clients.style.height = timeline__line_change.offsetHeight + "px"
 })
+
 team__modal.addEventListener('change', (e) => {
     if(e.target.checked){
         extend__content.classList.add('show--more')
     }else{
         extend__content.classList.remove('show--more')
     }
-
-    // const timeline__line_change = document.querySelector('.timeline--line')
-    // clients.style.height = timeline__line_change.offsetHeight + "px"
 })
 
 function setNewDesign(){
     header.classList.add('travel--on--style')
+    timeline__start__label.classList.add('start_trip')
 }
 
-function calcDate(iso){
+function calcDate(iso, to = null){
     const date_iso = new Date(iso)
-    const today = new Date()
+    let date_to
+    if(to === null){
+        date_to = new Date()
+    }else{
+        date_to = new Date(to)
+    }
 
     const humanReadable = {}
 
-    const diffMs = (date_iso - today) // milliseconds
+    const diffMs = (date_iso - date_to) // milliseconds
     const diffDays = Math.floor(diffMs / 86400000) // days
     const diffHrs = Math.floor((diffMs % 86400000) / 3600000) // hours
     const diffMin = Math.ceil(((diffMs % 86400000) % 3600000) / 60000) // minutes
 
     if(diffMs < 60000){
-        humanReadable.day = 0
-        humanReadable.hours = 0
-        humanReadable.minutes = 0
+        humanReadable.day = diffDays + 1
+        humanReadable.hours = diffHrs + 1
+        humanReadable.minutes = diffMin
     }else {
         humanReadable.day = diffDays
         humanReadable.hours = diffHrs
         humanReadable.minutes = diffMin
     }
 
-    console.log(humanReadable)
-
     return humanReadable
 }
 
 function displayTimeLeft(){
     const date = calcDate(dayOfTravelISO)
-    if(date.day === 0){
+    if(date.day <= 0){
         if(date.hours <= 0){
             if(date.minutes <= 0){
                 setNewDesign()
@@ -88,9 +84,6 @@ function displayTimeLeft(){
         time_left.innerHTML = `Le trajet est prévu dans ${date.day} jours(s) et ${date.hours} heure(s)`
     }
 }
-
-let blankSpace = 2*window.innerHeight - header.offsetHeight
-let heightContainer = (blankSpace/steps_hours.length) - 20
 
 async function createSteps(callback){
 
@@ -168,16 +161,11 @@ function setHeight(){
     const label__hour = document.querySelectorAll('.label--hour')
     const dot__step = document.querySelectorAll('.dot--step')
 
-    // console.log(timeline__line)
-
     let timelineTop = timeline__line.offsetTop
     let timelineHeight = timeline__line.offsetHeight
 
-    timeline__line__draw.style.top = timelineTop + "px"
-    timeline__line__draw.style.height = timelineHeight + "px"
-
-    timeline__line__evolution.style.top = timelineTop + "px"
-    timeline__line__evolution.style.maxHeight = timelineHeight + "px"
+    timeline__line__draw.style.top = timelineTop - 1 + "px"
+    timeline__line__evolution.style.top = timelineTop - 1 + "px"
 
     dot__step.forEach((e, index) => {
         e.setAttribute("data-num", index.toString())
@@ -187,7 +175,52 @@ function setHeight(){
     })
 
     clients.style.top = timelineTop + "px"
-    // clients.style.height = timelineHeight + "px"
+
+    timeLineProgress(timelineHeight)
+
+    setInterval(() => {
+        timeLineProgress(timelineHeight)
+    }, refreshInterval)
+}
+
+function timeLineProgress(timelineHeight){
+    const date = calcDate(dayOfTravelISO)
+    const dateEndTrip = calcDate(dayOfTravelISO,endTrip)
+    const current = getCurrentTime()
+
+    let currentHours = current.hours
+    let currentMinutes = current.minutes
+    let time = currentHours + ":" + currentMinutes
+
+    let tripStartHours = Math.abs(date.hours) * 60
+    let tripStartMinutes = Math.abs(date.minutes)
+    let minutesFromStart = tripStartHours + tripStartMinutes
+
+    let tripHours = Math.abs(dateEndTrip.hours) * 60
+    let tripMinutes = Math.abs(dateEndTrip.minutes)
+    let allMinutes = tripHours + tripMinutes
+
+    let percent = (minutesFromStart/allMinutes).toFixed(2)
+
+    // console.log(percent, (timelineHeight*percent).toFixed(2))
+
+
+    for (let i = 0; i < steps_hours.length; i++) {
+        console.log(steps_hours[i].slice(0,5), time)
+        if(steps_hours[i].slice(0,5) <= time){
+            const dot__step = document.querySelectorAll('.dot--step')
+
+            dot__step.forEach(e => {
+                if(e.dataset.num === i.toString()){
+                    e.classList.add('done')
+                }
+            })
+        }
+    }
+
+    timeline__line__draw.style.height = timelineHeight + "px"
+    timeline__line__evolution.style.height = (timelineHeight*percent).toFixed(2) + "px"
+    timeline__line__evolution.style.maxHeight = timelineHeight + "px"
 }
 
 function sumArray(a, b) {
@@ -321,19 +354,6 @@ function setLabels(arr, container){
     }
 }
 
-const cumulativeSum = arr => {
-    const c = arr.reduce((acc, val) => {
-        let {sum, res} = acc
-        sum += val
-        res.push(sum)
-        return {sum, res}
-    },{
-        sum : 0,
-        res : []
-    })
-    return c.res
-}
-
 function heightCalc(index = 1){
     const timeline__line = document.querySelector('.timeline--line')
     const dot = timeline__line.children[0].querySelector('.dot--step')
@@ -341,7 +361,6 @@ function heightCalc(index = 1){
 
     return timeline__line.children[0].offsetTop - clients.offsetTop + (index*dot.offsetTop)
 }
-
 
 function changeDisplayClients(e){
     const dot__step = document.querySelectorAll('.dot--step')
@@ -428,13 +447,13 @@ function clientDisplay(value = name__modal.value){
         let a = new Element(e)
 
         if(e.dataset.name !== steps_clients[value]){
-            if(date.day === 0 && date.hours <= 0){
+            if(date.day <= 0 && date.hours <= 0){
                 a.remove()
             }else{
                 a.modify()
             }
         }else{
-            if(date.day === 0 && date.hours <= 0){
+            if(date.day <= 0 && date.hours <= 0){
                 a.show("remove")
             }else{
                 a.show("modify")

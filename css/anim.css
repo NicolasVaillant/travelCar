@@ -188,6 +188,12 @@
 
 .TEST--HIDDEN{display: none!important;}
 
+.done{
+    --green: #399BA1;
+    background: var(--green);
+    border: 3px solid var(--green);
+}
+
 
 
 
