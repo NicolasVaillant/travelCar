@@ -84,10 +84,7 @@
     font-weight: lighter;
 }
 .opt--added{
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*height: calc(100% - 10vh);*/
+    box-shadow: 0 6px 15px 0 #b7b6b6;
     height: fit-content;
     width: 100%;
     background: #ffbc00;
@@ -158,7 +155,8 @@
     width: 4vw;
     min-width: 20px;
     height: 100%;
-    background: #83b0f2;
+    /*background: #83b0f2;*/
+    background: #01B1FE;
     border-radius: 1000px;
     position: absolute;
     top: 0;
@@ -182,6 +180,13 @@
     position: relative!important;
 }
 
+.show--more{
+    /*transform: translate(0,0) scale(1) skew(0)!important;*/
+    opacity: 1!important;
+    display: flex!important;
+}
+
+.TEST--HIDDEN{display: none!important;}
 
 
 

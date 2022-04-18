@@ -17,7 +17,10 @@ const clients = document.querySelector('.clients')
 const button_modal = document.querySelector('.button_submit_modal')
 const name__modal = document.querySelector('#name--modal')
 const name__main = document.querySelector('#name--main')
+const team__modal = document.querySelector('#team--modal')
+const extend__content = document.querySelector('.extend--content')
 const luggage__modal = document.querySelector('#luggage--modal')
+const luggage__modal__second = document.querySelector('#luggage--modal--2')
 
 const main = document.querySelector('main')
 const body = document.querySelector('body')
@@ -26,6 +29,16 @@ const leftPosition = 30
 
 name__main.addEventListener('change', () => {
     clientDisplay(name__main.value)
+
+    // const timeline__line_change = document.querySelector('.timeline--line')
+    // clients.style.height = timeline__line_change.offsetHeight + "px"
+})
+team__modal.addEventListener('change', (e) => {
+    if(e.target.checked){
+        extend__content.classList.add('show--more')
+    }else{
+        extend__content.classList.remove('show--more')
+    }
 
     // const timeline__line_change = document.querySelector('.timeline--line')
     // clients.style.height = timeline__line_change.offsetHeight + "px"
@@ -130,9 +143,6 @@ async function createSteps(callback){
             container_options.appendChild(opt_added)
         }
 
-        console.log("Set default design")
-        // container.style.minHeight = heightContainer + "px"
-
         buttonToMap.appendChild(localisation_ico)
         buttonToMap.appendChild(shortcut_localisation_text)
         container_options.appendChild(buttonToMap)
@@ -229,6 +239,7 @@ function setClients(){
         client_ico.classList.add('fa-user-plus')
         const client_in_car = document.createElement('p')
         client_in_car.classList.add('client--in--car')
+        client_in_car.classList.add('TEST--HIDDEN')
         let client_col = 0
         client_in_car.innerHTML = `${client_col}`
         client_in_car.appendChild(client_ico)
@@ -257,62 +268,48 @@ function setClients(){
 }
 
 function submitModal(callback){
-    let arrayDataClients = []
     button_modal.closest('.modal').classList.add('close--modal')
     main.classList.remove('disabled--main')
     body.classList.remove('disabled--body')
 
     const name_value = name__modal.value
     const luggage_value = luggage__modal.value
+    const luggage_value_s = luggage__modal__second.value
 
     name__main.selectedIndex = name_value
 
-    const container = document.querySelectorAll('.container')
-
     console.log("Set new design")
-    for (let i = 0; i < container.length; i++) {
-        //TODO
-        //Modification des offset à faire
-        //Submit du modal nous assure que les offsetHeight/offsetTop sont définis
 
-        // container[i].style.minHeight = maxHeight + 20 + "px"
-    }
-
-    // console.log(maxHeight)
-
+    //ScrollIntoView effect when submitting modal
     const client = document.querySelectorAll('.client')
     client.forEach(e => {
-        //TODO
-        //Modification des offset à faire
-        //Submit du modal nous assure que les offsetHeight/offsetTop sont définis
-
-        // e.style.top = maxHeight - clients.offsetTop + "px"
-
         if(e.dataset.name === steps_clients[name_value]){
-            console.log("scrollIntoView : " + steps_clients[name_value])
-            // e.scrollIntoView()
+            const midScreenClient = e.offsetTop + (e.offsetHeight/2)
+            // console.log("scrollIntoView : " + steps_clients[name_value])
+            window.scroll(0, midScreenClient)
         }
     })
 
+    try{
+        $.ajax({
+            type : "POST",
+            url  : "../php/store_client_data.php",
+            data : { name : steps_clients[name_value], type_luggage : type_luggage[luggage_value] }
+        });
+        // In other way, try to get the luggage :
+        $.ajax({
+            type : "POST",
+            url  : "../php/get_client_data.php",
+            data : { name : steps_clients[name_value] },
+            success: function(res) {
+                console.log(steps_clients[name_value] + " -> " + res)
+            }
+        });
+    }catch (e) {
+        console.error(e)
+    }
+
     callback()
-
-    arrayDataClients.push(steps_clients[name_value], type_luggage[luggage_value])
-    //POST arrayDataClients to store clients preferences
-    $.ajax({
-        type : "POST",
-        url  : "../php/store_client_data.php",
-        data : { name : steps_clients[name_value], type_luggage : type_luggage[luggage_value] }
-    });
-    // In other way, try to get the luggage :
-    $.ajax({
-        type : "POST",
-        url  : "../php/get_client_data.php",
-        data : { name : steps_clients[name_value] },
-        success: function(res) {
-            console.log(steps_clients[name_value] + " -> " + res)
-        }
-    });
-
 }
 
 function setLabels(arr, container){
@@ -485,7 +482,11 @@ function setTimeLine(){
 
 let path_clients = []
 let path_clients_in = []
+let common = []
+const count = {};
+
 function setStepsClients(){
+
     for (let i = 0; i < path.length; i++) {
         let pathS = path[i].split('-')
         let start = pathS[0]
@@ -500,18 +501,20 @@ function setStepsClients(){
         path_clients.push(path_clients_in)
     }
 
-    for (let a = 0; a < path_clients.length; a++) {
-        // console.log(path_clients)
-        for (let b = 0; b < path_clients[a].length; b++) {
-            // console.log(path_clients[a][b])
-            console.log(path_clients[a][b], a, b)
-            if(a === Number(path_clients[a][b])){
-                console.log("CO : " + a)
+    for (let i = 0; i < path_clients.length; i++) {
+        for (let j = 0; j < steps_cities.length; j++) {
+            if(path_clients[i].includes(j)){
+                common.push(j)
             }
         }
     }
-
-    console.log(path_clients)
+    common.forEach(element => {
+        count[element] = (count[element] || 0) + 1;
+    })
+    /**
+     * count : how many customer in the same place
+     * path_clients : path followed by customers
+     */
 }
 
 let support = ""
@@ -539,6 +542,7 @@ window.onload = function (){
 
     setLabels(steps_clients, name__modal)
     setLabels(type_luggage, luggage__modal)
+    setLabels(type_luggage, luggage__modal__second)
     setLabels(steps_clients, name__main)
 
     displayTimeLeft()
@@ -566,7 +570,8 @@ function containerHeight(){
     container.forEach(e => {
         e.style.minHeight = minHeight + "px"
     })
-    console.log("minHeight container : " + minHeight)
+    console.info("Set default design")
+    console.info("minHeight container : " + minHeight)
 }
 
 

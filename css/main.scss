@@ -13,7 +13,9 @@
     flex-direction: column;
 }
 @mixin justify-left{
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start
 }
 @mixin tn-50{
     width: 50%;
@@ -289,7 +291,7 @@ body{
         position: absolute;
         top: 0;
         left: 50%;
-        transform: translate(-50%, 50%);
+        transform: translate(-50%, 25vh);
         background: $white;
         box-shadow: 0 6px 16px 0 #565656;
         border-radius: $border2;
@@ -311,21 +313,42 @@ body{
             margin-top: 1em;
             gap: 1em;
 
-            label{
-                @include tn-flex-column;
-                @include justify-left;
-                gap: .5em;
-                color: $grey2;
-                width: 100%;
-
-                select{
+            @mixin labels{
+                label{
+                    @include tn-flex-column;
+                    @include justify-left;
+                    gap: .5em;
+                    color: black;
                     width: 100%;
-                    border: 1px solid black;
-                    //outline: $green;
-                    padding: .5em;
-                    border-radius: $border1;
+
+                    select{
+                        width: 100%;
+                        border: 1px solid black;
+                        //outline: $green;
+                        padding: .5em;
+                        border-radius: $border1;
+                    }
+                }
+                label[data-position="last"]{
+                    @include tn-flex-row;
+                    @include justify-left;
+                    align-items: center!important;
                 }
             }
+
+            @include labels;
+            .extend--content{
+                @include labels;
+
+                width: 100%;
+                display: none;
+
+                //transform: translate(-25vw, -10vh) scale(0) skew(-45deg) ;
+                //transform-origin: top left;
+                opacity: 0;
+                //transition: opacity .2s!important;
+            }
+
 
             button{
                 width: 100%;
