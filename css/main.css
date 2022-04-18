@@ -229,6 +229,7 @@ body main .content .timeline .timeline--line--evolution {
   max-height: 1182px;
   background: #399BA1;
   border: 0;
+  min-height: 0 !important;
 }
 body main .content .clients {
   position: absolute;
