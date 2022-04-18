@@ -483,8 +483,41 @@ function setTimeLine(){
     })
 }
 
+let path_clients = []
+let path_clients_in = []
+function setStepsClients(){
+    for (let i = 0; i < path.length; i++) {
+        let pathS = path[i].split('-')
+        let start = pathS[0]
+        let end = pathS[1]
+
+        path_clients_in = []
+        for (let j = 0; j <= steps_cities.length; j++) {
+            if(j >= Number(start) && j <= Number(end)){
+                path_clients_in.push(j)
+            }
+        }
+        path_clients.push(path_clients_in)
+    }
+
+    for (let a = 0; a < path_clients.length; a++) {
+        // console.log(path_clients)
+        for (let b = 0; b < path_clients[a].length; b++) {
+            // console.log(path_clients[a][b])
+            console.log(path_clients[a][b], a, b)
+            if(a === Number(path_clients[a][b])){
+                console.log("CO : " + a)
+            }
+        }
+    }
+
+    console.log(path_clients)
+}
+
 let support = ""
 window.onload = function (){
+
+    setStepsClients()
 
     if((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1) || (navigator.platform.indexOf("iPad") !== -1)){
         support = "Apple"
