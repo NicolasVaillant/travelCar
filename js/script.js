@@ -73,6 +73,8 @@ function displayTimeLeft(){
         if(date.hours <= 0){
             if(date.minutes <= 0){
                 setNewDesign()
+            }else{
+                time_left.innerHTML = `Le trajet est prévu dans ${date.minutes} minute(s)`
             }
         }else{
             time_left.innerHTML = `Le trajet est prévu dans ${date.hours} heure(s) et ${date.minutes} minute(s)`
