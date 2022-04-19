@@ -295,6 +295,46 @@ body .modal .content {
   margin-top: 1em;
   gap: 1em;
 }
+body .modal .content .luggage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 0.5em;
+  width: 100%;
+}
+body .modal .content .luggage label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5em;
+  color: black;
+  width: 100%;
+}
+body .modal .content .luggage label select {
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+body .modal .content .luggage label input {
+  height: 100%;
+  width: 100%;
+  text-indent: 40%;
+}
+body .modal .content .luggage label:first-child {
+  flex: 4;
+}
+body .modal .content .luggage label:last-child {
+  flex: 1;
+}
 body .modal .content label {
   display: flex;
   align-items: center;
@@ -309,56 +349,20 @@ body .modal .content label {
   width: 100%;
 }
 body .modal .content label select {
-  width: 100%;
   border: 1px solid black;
   padding: 0.5em;
   border-radius: 5px;
 }
-body .modal .content label[data-position=last] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
-  align-items: center !important;
-}
-body .modal .content .extend--content {
+body .modal .content label input {
+  height: 100%;
   width: 100%;
-  display: none;
-  opacity: 0;
+  text-indent: 40%;
 }
-body .modal .content .extend--content label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
-  gap: 0.5em;
-  color: black;
-  width: 100%;
+body .modal .content label:first-child {
+  flex: 4;
 }
-body .modal .content .extend--content label select {
-  width: 100%;
-  border: 1px solid black;
-  padding: 0.5em;
-  border-radius: 5px;
-}
-body .modal .content .extend--content label[data-position=last] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
-  align-items: center !important;
+body .modal .content label:last-child {
+  flex: 1;
 }
 body .modal .content button {
   width: 100%;

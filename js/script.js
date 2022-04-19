@@ -15,10 +15,8 @@ const clients = document.querySelector('.clients')
 const button_modal = document.querySelector('.button_submit_modal')
 const name__modal = document.querySelector('#name--modal')
 const name__main = document.querySelector('#name--main')
-const team__modal = document.querySelector('#team--modal')
-const extend__content = document.querySelector('.extend--content')
 const luggage__modal = document.querySelector('#luggage--modal')
-const luggage__modal__second = document.querySelector('#luggage--modal--2')
+
 
 const main = document.querySelector('main')
 const body = document.querySelector('body')
@@ -29,20 +27,14 @@ name__main.addEventListener('change', () => {
     clientDisplay(name__main.value)
 })
 
-team__modal.addEventListener('change', (e) => {
-    if(e.target.checked){
-        extend__content.classList.add('show--more')
-    }else{
-        extend__content.classList.remove('show--more')
-    }
-})
 
 function setNewDesign(){
     header.classList.add('travel--on--style')
     timeline__start__label.classList.add('start_trip')
 }
 
-function calcDate(iso, to = null){
+function calcDate(iso, to = null, absOrNot){
+    const humanReadable = {}
     const date_iso = new Date(iso)
     let date_to, diffMs
     if(to === null){
@@ -51,9 +43,13 @@ function calcDate(iso, to = null){
         date_to = new Date(to)
     }
 
-    const humanReadable = {}
+    if(absOrNot === true){
+        diffMs = Math.abs(date_iso - date_to) // milliseconds
+    }else{
+        diffMs = (date_iso - date_to) // milliseconds
+    }
 
-    diffMs = (date_iso.getTime() - date_to.getTime()) // milliseconds
+
     const diffDays = Math.floor(diffMs / 86400000) // days
     const diffHrs = Math.floor((diffMs % 86400000) / 3600000) // hours
     const diffMin = Math.ceil(((diffMs % 86400000) % 3600000) / 60000) // minutes
@@ -68,7 +64,8 @@ function calcDate(iso, to = null){
 }
 
 function displayTimeLeft(){
-    const date = calcDate(dayOfTravelISO)
+    //set absOrNot to false
+    const date = calcDate(dayOfTravelISO,null,false)
     if(date.day <= 0){
         if(date.hours <= 0){
             if(date.minutes <= 0){
@@ -111,7 +108,8 @@ async function createSteps(callback){
         //TODO : UX A DEF -------------------------------
         const localisation_ico = document.createElement('i')
         localisation_ico.classList.add('fas')
-        localisation_ico.classList.add('fa-map-marker-alt')
+        // localisation_ico.classList.add('fa-map-marker-alt')
+        localisation_ico.classList.add('fa-map-marked-alt')
         //-----------------------------------------------
         const shortcut_localisation_text = document.createElement('p')
         shortcut_localisation_text.classList.add('shortcut--localisation--text')
@@ -176,7 +174,7 @@ function setHeight(){
     clients.style.top = timelineTop + "px"
     timeline__line__draw.style.height = timelineHeight + "px"
 
-    const date = calcDate(dayOfTravelISO)
+    const date = calcDate(dayOfTravelISO, null, false)
     if(date.day <= 0){
         if(date.hours <= 0){
             if(date.minutes <= 0){
@@ -208,16 +206,16 @@ function timeLineProgress(timelineHeight, timelineTop){
         // console.log(steps_hours[i].slice(0,5), time, stepID)
 
         //Date calculation for each steps
-        date = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]))
+        date = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]), null, false)
 
         // console.log((steps_hours[stepID]).slice(0,5))
         // console.log((steps_hours[steps_hours.length - 1]).slice(0,5))
 
         //Test to know if the last step is concerned
         if(steps_hours[stepID].slice(0,5) < steps_hours[steps_hours.length - 1].slice(0,5)){
-            dateEndTrip = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]),dayOfTravel.concat(" ", steps_hours[stepID+1]))
+            dateEndTrip = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]),dayOfTravel.concat(" ", steps_hours[stepID+1]), false)
         }else{
-            dateEndTrip = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]),dayOfTravel.concat(" ", steps_hours[steps_hours.length - 1]))
+            dateEndTrip = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]),dayOfTravel.concat(" ", steps_hours[steps_hours.length - 1]), false)
         }
     }
 
@@ -360,7 +358,6 @@ function submitModal(callback){
 
     const name_value = name__modal.value
     const luggage_value = luggage__modal.value
-    const luggage_value_s = luggage__modal__second.value
 
     name__main.selectedIndex = name_value
 
@@ -500,7 +497,7 @@ function setLineDrawHeight(index = null, heightContainer = null){
 
 function clientDisplay(value = name__modal.value){
     const clients = document.querySelectorAll('.client')
-    const date = calcDate(dayOfTravelISO)
+    const date = calcDate(dayOfTravelISO, null, false)
 
     clients.forEach(e => {
         let a = new Element(e)
@@ -620,7 +617,6 @@ window.onload = function (){
 
     setLabels(steps_clients, name__modal)
     setLabels(type_luggage, luggage__modal)
-    setLabels(type_luggage, luggage__modal__second)
     setLabels(steps_clients, name__main)
 
     displayTimeLeft()

@@ -74,17 +74,16 @@
         <label for="name--modal"> Qui êtes-vous ?
             <select id="name--modal" name="name--modal"></select>
         </label>
-        <label for="luggage--modal"> Type de bagage à transporter
-            <select id="luggage--modal" name="luggage--modal"></select>
-        </label>
-        <label for="team--modal" data-position="last">
-            <input type="checkbox" name="team--modal" id="team--modal"> Voyagez-vous accompagné ?
-        </label>
-        <div class="extend--content">
-            <label for="luggage--modal--2"> Type de bagage à transporter (2)
-                <select id="luggage--modal--2" name="luggage--modal--2"></select>
+        <p>Type de bagage à transporter</p>
+        <div class="luggage">
+            <label for="luggage--modal">
+                <select id="luggage--modal" name="luggage--modal"></select>
+            </label>
+            <label for="nb--luggage">
+                <input type="number" name="nb--luggage" id="nb--luggage" value="1" min="1" max="5">
             </label>
         </div>
+
         <button class="button_submit_modal"
                 type="submit"
                 name="submit"
