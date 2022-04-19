@@ -349,6 +349,8 @@ body .modal .content .luggage--all .luggage label:last-child {
 body .modal .content .luggage--all p:last-child {
   color: #ff3b64;
   font-weight: bold;
+  opacity: 0;
+  display: none;
 }
 body .modal .content label {
   display: flex;
@@ -379,14 +381,35 @@ body .modal .content label:first-child {
 body .modal .content label:last-child {
   flex: 1;
 }
-body .modal .content button {
+body .modal .content .footer--submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  align-items: stretch !important;
   width: 100%;
+}
+body .modal .content .footer--submit button {
+  width: 0;
+  opacity: 0;
+  padding: 1em 0;
+  transition: all 0.5s !important;
+}
+body .modal .content .footer--submit button:not(.remove--input) {
   outline: none;
   background: #399BA1;
   color: #fff;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 5px;
-  padding: 1em;
+}
+body .modal .content .footer--submit .remove--input {
+  outline: none;
+  font-weight: bold;
+  height: 100%;
+  background: none;
+  border-radius: var(--border1);
+  border: 1px solid var(--b);
 }
 
 /*# sourceMappingURL=main.css.map */

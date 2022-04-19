@@ -84,15 +84,20 @@
                     <input type="text" name="nb--luggage" id="nb--luggage" value="1" pattern="[0-9]*">
                 </label>
             </div>
-            <p id="info--input--number">Veuillez rentrer un nombre compris entre 1 et 5</p>
+            <p id="info--input--number">
+                Veuillez entrer un nombre compris entre 1 et 5
+            </p>
         </div>
         
-        
+        <div class="footer--submit">
+            <button class="button_submit_modal display--button"
+                    type="submit"
+                    name="submit"
+                    onclick="submitModal(clientDisplay)">Valider
+            </button>
+            <button class="remove--input" onclick="resetNumModal()">Reset</button>
+        </div>
 
-        <button class="button_submit_modal"
-                type="submit"
-                name="submit"
-                onclick="submitModal(clientDisplay)">Valider</button>
     </div>
 </div>
 

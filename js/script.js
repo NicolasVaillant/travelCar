@@ -15,18 +15,56 @@ const clients = document.querySelector('.clients')
 const button_modal = document.querySelector('.button_submit_modal')
 const name__modal = document.querySelector('#name--modal')
 const name__main = document.querySelector('#name--main')
+const nb__luggage = document.querySelector('#nb--luggage')
+const info__input__number = document.querySelector('#info--input--number')
 const luggage__modal = document.querySelector('#luggage--modal')
 
+const remove__input = document.querySelector('.remove--input')
+const button_submit_modal = document.querySelector('.button_submit_modal')
 
 const main = document.querySelector('main')
 const body = document.querySelector('body')
 
 const leftPosition = 30
 let heightLineEvolution
+
 name__main.addEventListener('change', () => {
     clientDisplay(name__main.value)
 })
 
+nb__luggage.addEventListener('keyup', () => {
+    const reg = new RegExp('^[0-9]*$');
+
+    if (reg.test(nb__luggage.value) === false) {
+        info__input__number.classList.add('show--more')
+        setClassButtonModal(false)
+    }else if(nb__luggage.value <= 5){
+        info__input__number.classList.remove('show--more')
+        setClassButtonModal(true)
+    }else{
+        info__input__number.classList.add('show--more')
+        setClassButtonModal(false)
+    }
+})
+
+function setClassButtonModal(set){
+    if(set === true){
+        button_submit_modal.classList.add('display--button')
+        remove__input.classList.remove('display--button')
+    }else{
+        button_submit_modal.classList.remove('display--button')
+        remove__input.classList.add('display--button')
+    }
+}
+
+function resetNumModal(){
+    nb__luggage.value = "1"
+    nb__luggage.focus()
+    nb__luggage.setAttribute("value", "1")
+
+    info__input__number.classList.remove('show--more')
+    setClassButtonModal(true)
+}
 
 function setNewDesign(){
     header.classList.add('travel--on--style')

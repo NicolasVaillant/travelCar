@@ -195,8 +195,17 @@
     background: var(--green);
     border: 3px solid var(--green);
 }
+.display--button{
+    width: 100% !important;
+    padding: 1em!important;
+    opacity: 1!important;
+}
 
-
+.show--line{
+    /*transform: translate(0,0) scale(1) skew(0)!important;*/
+    opacity: 1!important;
+    display: flex!important;
+}
 
 
 
