@@ -21,6 +21,7 @@ const luggage__modal = document.querySelector('#luggage--modal')
 
 const remove__input = document.querySelector('.remove--input')
 const button_submit_modal = document.querySelector('.button_submit_modal')
+const disclaimer__time = document.querySelector('.disclaimer--time')
 
 const main = document.querySelector('main')
 const body = document.querySelector('body')
@@ -68,6 +69,7 @@ function resetNumModal(){
 
 function setNewDesign(){
     header.classList.add('travel--on--style')
+    disclaimer__time.classList.add('show--line')
     timeline__start__label.classList.add('start_trip')
 }
 

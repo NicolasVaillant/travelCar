@@ -207,6 +207,10 @@
     display: flex!important;
 }
 
+.stripes{
+    background: repeating-linear-gradient( 45deg, #ffffff, #ffffff 10px, #e8e8e8 10px, #e8e8e8 20px);
+}
+
 
 
 

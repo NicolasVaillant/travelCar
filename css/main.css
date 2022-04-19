@@ -14,7 +14,8 @@ body main {
 }
 body main .header {
   height: auto;
-  padding: 1.6em 1em;
+  padding: 1em;
+  border: 1px solid #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,10 +142,23 @@ body main .header.travel--on--style label {
 body main .header.travel--on--style .banner--timer {
   display: none !important;
 }
+body main .disclaimer--time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  gap: 1em;
+  background: #fdb0b0;
+  padding: 1em;
+  width: 100%;
+  display: none;
+  opacity: 0;
+}
 body main .content {
   height: auto;
   width: 100%;
-  padding: 0 1em;
+  padding: 1em;
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;

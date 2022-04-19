@@ -61,7 +61,8 @@ body{
 
         .header{
             height: auto;
-            padding: $padding3 $padding1;
+            padding: $padding1;
+            border: 1px solid #e8e8e8;
 
             @include tn-flex-column;
             @include justify-left;
@@ -169,10 +170,21 @@ body{
             }
         }
 
+        .disclaimer--time{
+            @include tn-flex-row;
+            gap: 1em;
+            background: #fdb0b0;
+            padding: $padding1;
+            width: 100%;
+
+            display: none;
+            opacity: 0;
+        }
+
         .content{
             height: auto;
             width: 100%;
-            padding: 0 $padding1;
+            padding: $padding1;
             overflow-x: hidden;
             overflow-y: hidden;
 
