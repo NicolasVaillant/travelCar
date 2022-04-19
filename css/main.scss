@@ -362,15 +362,25 @@ body{
                 }
             }
 
-            .luggage{
-                @include tn-flex-row;
-                align-items: stretch!important;
-                justify-content: space-between!important;
+            .luggage--all{
+                @include tn-flex-column;
+                @include justify-left;
                 gap: .5em;
-                width: 100%;
+                .luggage{
+                    @include tn-flex-row;
+                    align-items: stretch!important;
+                    justify-content: space-between!important;
+                    gap: .5em;
+                    width: 100%;
 
-                @include labels;
+                    @include labels;
+                }
+                p:last-child{
+                    color: #ff3b64;
+                    font-weight: bold;
+                }
             }
+
 
             @include labels;
 
