@@ -10,7 +10,7 @@ This app allow customers to see when they got picked during the car trip
 > Design sets for Mobile Phone only
 
 
-Check [https://nicolasvaillant.github.io/travelCar/](website)
+Check [https://nicolasvaillant.github.io/travelCar/](https://nicolasvaillant.github.io/travelCar/)
 
 ---
 
