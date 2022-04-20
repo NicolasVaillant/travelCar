@@ -332,6 +332,7 @@ body main .car--info .inside .wrapper {
   box-shadow: 0 6px 15px 0 #b7b6b6;
   overflow: hidden;
   border-radius: var(--border1);
+  border: 0;
 }
 body main .car--info .inside .wrapper .im--car {
   display: flex;
@@ -364,17 +365,7 @@ body main .car--info .inside .wrapper .im--car .numbers {
 }
 body main .car--info .inside .wrapper img {
   width: 100%;
-}
-body main .car--info .inside .wrapper .picture--loader {
-  height: 20vh;
-  width: 100%;
-  background: #e8e8e8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  color: #b6b6b6;
-  font-size: 20vw;
+  border: 0;
 }
 body main.disabled--main:after {
   content: "";

@@ -347,7 +347,7 @@ body{
                     box-shadow: 0 6px 15px 0 #b7b6b6;
                     overflow: hidden;
                     border-radius: var(--border1);
-                    //border: 1px solid #e8e8e8;
+                    border: 0;
 
                     .im--car{
                         @include tn-flex-row;
@@ -376,16 +376,9 @@ body{
 
                     img{
                         width: 100%;
+                        border: 0;
                     }
-                    .picture--loader{
-                        height: 20vh;
-                        width: 100%;
-                        background: #e8e8e8;
 
-                        @include flex;
-                        color: #b6b6b6;
-                        font-size: 20vw;
-                    }
                 }
             }
         }
