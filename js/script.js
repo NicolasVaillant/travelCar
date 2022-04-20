@@ -97,15 +97,12 @@ function calcDate(iso, to = null, absOrNot){
     humanReadable.hours = diffHrs
     humanReadable.minutes = diffMin
 
-    // console.log(humanReadable)
-
     return humanReadable
 }
 
 function displayTimeLeft(){
     //set absOrNot to false
     const date = calcDate(dayOfTravelISO,null,false)
-    console.log(date)
     if(date.day <= 0){
         if(date.hours <= 0){
             if(date.minutes <= 0){
@@ -126,7 +123,7 @@ async function createSteps(callback){
     for (let i = 0; i < steps_hours.length; i++) {
         const container = document.createElement('div')
         container.classList.add('container')
-
+        container.setAttribute('data-date', steps_hours[i])
         const dot = document.createElement('div')
         dot.classList.add('dot--step')
         const label_hour = document.createElement('div')
@@ -265,52 +262,50 @@ function timeLineProgress(timelineHeight, timelineTop){
         }
     }
 
-    //---------------------------------------------------
     //Definition of the index of the start point and the end point
     let indexStart = arrayDate_start.id
 
     //Definition of the ISO date of the start point and the end point
-    let hourStartISO,hourEndISO
+    let hourStartISO, hourEndISO, hourEnd
 
     if(arrayDate_end !== undefined){
         car__timeline.classList.remove('hidden_ico')
         hourStartISO = arrayDate_start.ISO[arrayDate_start.ISO.length - 1]
         hourEndISO = arrayDate_end.ISO[0]
+        hourEnd = arrayDate_end.hour[0]
 
         let dateStartISO = calcDate(hourStartISO, null, true)
+        // let dateEndISO = calcDate(hourEndISO, null, true)
         //Set absOrNot to true to calcul delay
         let betweenDates = calcDate(hourStartISO, hourEndISO, true)
 
         const container = document.querySelectorAll('.container')
         //Check container #0 but each container has the same height based on the max container height
         const dot = container[indexStart].querySelector('.dot--step')
-        let base = container[indexStart].offsetTop + dot.offsetTop
-
-        // console.log(arrayDate_start, arrayDate_end)
-
-        // console.log(maxHeightContainer, dot, base)
+        //valueOffsetDot initial value defined by tests
+        let valueOffsetDot = 4
+        let base = container[indexStart].offsetTop + valueOffsetDot*dot.offsetTop
 
         let getAllHours = betweenDates.hours
         let getAllMinutes = betweenDates.minutes
-        let allMinutes = getAllHours*60 + getAllMinutes
+        let allMinutes = getAllHours*60 + getAllMinutes + 1
 
         let getAllHoursLast = dateStartISO.hours
         let getAllMinutesLast = dateStartISO.minutes
         let minutesFromStart = getAllHoursLast*60 + getAllMinutesLast
 
         //Let's make a test to know if we are at the end of the trip
-        let percent
-        percent = (minutesFromStart/allMinutes).toFixed(2)
+        let percent = (minutesFromStart/allMinutes).toFixed(2)
 
         timeline__line__evolution.style.maxHeight = timelineHeight + "px"
 
-        if(Number(percent) === 1){
-            timeline__line__evolution.style.height = timelineHeight + "px"
-            //Be sure all dot are checked
-            const dot__step = document.querySelectorAll('.dot--step')
-            dot__step.forEach(e => {
-                e.classList.add('done')
-            })
+        if(hourEnd === steps_hours[steps_hours.length - 1]){
+            if(Number(percent) === 1){
+                timeline__line__evolution.style.height = timelineHeight + "px"
+            }else{
+                heightLineEvolution = base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2))
+                timeline__line__evolution.style.height = heightLineEvolution - timelineTop + "px"
+            }
         }else{
             heightLineEvolution = base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2))
             timeline__line__evolution.style.height = heightLineEvolution - timelineTop + "px"
@@ -318,16 +313,12 @@ function timeLineProgress(timelineHeight, timelineTop){
 
         //Check if the dot--step is passed
         //In that case, added a "done" class to set his bg and border color
-        for (let i = 0; i < steps_hours.length; i++) {
-            if(steps_hours[i].slice(0,5) <= time){
-                const dot__step = document.querySelectorAll('.dot--step')
-                dot__step.forEach(e => {
-                    if(e.dataset.num === i.toString()){
-                        e.classList.add('done')
-                    }
-                })
+        const containers = document.querySelectorAll('.container')
+        containers.forEach((e, i) => {
+            if(arrayDate_start.hour[i] === e.dataset.date){
+                e.querySelector('.dot--step').classList.add('done')
             }
-        }
+        })
     }
 }
 
@@ -368,10 +359,6 @@ function setClients(){
         const client_container = document.createElement('div')
         client_container.classList.add('client--container')
 
-        if(steps_clients[i].length >= 6){
-            client_container.classList.add('tn--long')
-
-        }
         const client_name = document.createElement('div')
         client_name.classList.add('client--name')
         client_name.innerHTML = steps_clients[i]
@@ -425,7 +412,6 @@ function submitModal(callback){
     client.forEach(e => {
         if(e.dataset.name === steps_clients[name_value]){
             const midScreenClient = e.offsetTop + (e.offsetHeight/2)
-            // console.log("scrollIntoView : " + steps_clients[name_value])
             window.scroll(0, midScreenClient)
         }
     })
@@ -464,8 +450,6 @@ function setLabels(arr, container){
 function heightCalc(index = 1){
     const timeline__line = document.querySelector('.timeline--line')
     const dot = timeline__line.children[0].querySelector('.dot--step')
-    // console.log("dot : " + dot.offsetTop)
-
     return timeline__line.children[0].offsetTop - clients.offsetTop + (index*dot.offsetTop)
 }
 
@@ -475,6 +459,14 @@ function changeDisplayClients(e){
     const start = e.dataset.start
     const end = e.dataset.end
     const diff = end - start
+
+    //Shift customer labels right when name length is >= 4
+    const client_container = document.querySelectorAll('.client--container')
+    client_container.forEach((e, i) => {
+        if(steps_clients[i].length >= 4){
+            e.classList.add('tn--long')
+        }
+    })
 
     //steps_hours.length nous donne le nb de dot
     for (let i = 0; i < steps_hours.length; i++) {
@@ -666,6 +658,7 @@ function containerHeight(){
 let support = ""
 window.onload = function (){
 
+    window.scroll(0, 0)
     setStepsClients()
 
     if((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1) || (navigator.platform.indexOf("iPad") !== -1)){
