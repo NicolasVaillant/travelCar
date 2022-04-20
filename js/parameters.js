@@ -4,17 +4,11 @@
 const dayOfTravel = "Apr 20 2022"
 const refreshInterval = 1000
 
-const colors = [
-    "#fff",
-]
-
-//A REGROUPED ----------------------------------------------
-
 const steps_hours = [
-    "09:10:00",
-    "09:50:00",
-    "10:55:00",
-    "11:45:00"
+    "11:10:00",
+    "11:55:00",
+    "11:56:00",
+    "16:45:00"
 ]
 
 const steps_cities = [
@@ -38,8 +32,6 @@ const steps_added = [
     "Selon convenance (à préciser durant le trajet)"
 ]
 
-//A REGROUPED ----------------------------------------------
-
 const steps_clients = [
     "Kim",
     "Myriam",
@@ -52,8 +44,6 @@ const path = [
     "2-3"
 ]
 
-//A REGROUPED ----------------------------------------------
-
 const type_luggage = [
     "Sac à dos",
     "Sac de sport",
@@ -62,6 +52,3 @@ const type_luggage = [
     "Petite valise",
     "Autre (à préciser par SMS)"
 ]
-
-//A REGROUPED ----------------------------------------------
-

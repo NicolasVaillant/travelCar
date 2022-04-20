@@ -2,6 +2,7 @@ select {
   line-height: 20px;
   height: 3em !important;
   width: 100% !important;
+  background: var(--w) !important;
 }
 
 body {
@@ -107,7 +108,7 @@ body main .header .bottom--line label {
   white-space: nowrap;
   width: 100%;
 }
-body main .header .bottom--line button {
+body main .header .bottom--line a {
   border-radius: var(--border1);
   width: 8vh;
   font-size: 25px;
@@ -118,7 +119,6 @@ body main .header .bottom--line button {
   justify-content: center;
   align-content: center;
   padding: 0 1em;
-  border: 0;
   background: #F0F0F0;
   border: 1px solid #c5c5c5;
 }
@@ -298,6 +298,84 @@ body main .content .clients {
   flex-direction: row;
   gap: 1.2em;
 }
+body main .car--info {
+  height: auto;
+  width: 100%;
+  padding: 1em;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+body main .car--info hr {
+  width: 100%;
+  border: 1px solid grey;
+}
+body main .car--info .inside {
+  width: 100%;
+  margin-top: 1em;
+}
+body main .car--info .inside .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 1em 0;
+  box-shadow: 0 6px 15px 0 #b7b6b6;
+  overflow: hidden;
+  border-radius: var(--border1);
+}
+body main .car--info .inside .wrapper .im--car {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--w);
+  width: 100%;
+  height: 10vh;
+  border: 0;
+}
+body main .car--info .inside .wrapper .im--car .col-l,
+body main .car--info .inside .wrapper .im--car .col-r {
+  width: 10%;
+  background: #01b1fe;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: var(--w);
+  font-size: 18px;
+}
+body main .car--info .inside .wrapper .im--car .numbers {
+  font-size: 48px;
+}
+body main .car--info .inside .wrapper img {
+  width: 100%;
+}
+body main .car--info .inside .wrapper .picture--loader {
+  height: 20vh;
+  width: 100%;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  color: #b6b6b6;
+  font-size: 20vw;
+}
 body main.disabled--main:after {
   content: "";
   position: absolute;
@@ -308,6 +386,22 @@ body main.disabled--main:after {
   height: 100%;
   width: 100%;
   z-index: 9999;
+}
+body .footer--copyright {
+  height: 5vh;
+  width: 100%;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
+body .footer--copyright a {
+  color: #01b1fe;
+}
+body .footer--copyright a:active {
+  color: #215269;
 }
 body .modal {
   z-index: 99999;

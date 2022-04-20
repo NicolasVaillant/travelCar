@@ -555,6 +555,8 @@ function setLineDrawHeight(index = null, heightContainer = null){
         newIndex = index + 1
     }
 
+
+
     timeline__line__draw.style.height = (newIndex+1)*heightContainer + 1.1*offset + "px"
     // timeline__line__evolution.style.height = heightLineEvolution - NbContainerHidden*heightContainer + "px"
 }

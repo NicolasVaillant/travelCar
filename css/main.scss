@@ -49,6 +49,7 @@ select{
     line-height: 20px;
     height: 3em!important;
     width: 100% !important;
+    background: var(--w) !important;
 }
 
 body{
@@ -139,7 +140,7 @@ body{
                     white-space: nowrap;
                     width: 100%;
                 }
-                button{
+                a{
                     border-radius: var(--border1);
                     width: 8vh;
                     font-size: 25px;
@@ -150,7 +151,6 @@ body{
                     justify-content: center;
                     align-content: center;
                     padding: 0 1em;
-                    border: 0;
                     background: #F0F0F0;
                     border: 1px solid #c5c5c5;
                 }
@@ -318,20 +318,75 @@ body{
 
                 @include tn-flex-row;
                 gap: 1.2em;
+            }
+        }
 
-                //@supports (mix-blend-mode: screen) {
-                //    &:after{
-                //        content: '';
-                //        background: linear-gradient(270deg, #1100ff, #00c4ff);
-                //        position: absolute;
-                //        top: 0;
-                //        left: 0;
-                //        height: 100%;
-                //        width: 100%;
-                //        mix-blend-mode: screen;
-                //        pointer-events: none;
-                //    }
-                //}
+        .car--info{
+            height: auto;
+            width: 100%;
+            padding: $padding1;
+            overflow-x: hidden;
+            overflow-y: hidden;
+
+            @include tn-flex-column;
+            @include justify-left;
+
+            hr{
+                width: 100%;
+                border: 1px solid grey;
+            }
+
+            .inside{
+                width: 100%;
+                margin-top: 1em;
+
+                .wrapper{
+                    @include tn-flex-column;
+                    width: 100%;
+                    margin: 1em 0;
+                    box-shadow: 0 6px 15px 0 #b7b6b6;
+                    overflow: hidden;
+                    border-radius: var(--border1);
+                    //border: 1px solid #e8e8e8;
+
+                    .im--car{
+                        @include tn-flex-row;
+
+                        justify-content: space-between;
+                        background: var(--w);
+                        width: 100%;
+                        height: 10vh;
+                        border: 0;
+
+                        .col-l,
+                        .col-r{
+                            width: 10%;
+                            background: #01b1fe;
+                            height: 100%;
+                            @include tn-flex-column;
+                            justify-content: space-evenly;
+                            color: var(--w);
+                            font-size: 18px;
+                        }
+
+                        .numbers{
+                            font-size: 48px;
+                        }
+                    }
+
+                    img{
+                        width: 100%;
+                    }
+                    .picture--loader{
+                        height: 20vh;
+                        width: 100%;
+                        background: #e8e8e8;
+
+                        @include flex;
+                        color: #b6b6b6;
+                        font-size: 20vw;
+                    }
+                }
             }
         }
     }
@@ -346,6 +401,20 @@ body{
             height: 100%;
             width: 100%;
             z-index: 9999;
+        }
+    }
+
+    .footer--copyright{
+        height: 5vh;
+        width: 100%;
+        background: #e8e8e8;
+        @include tn-flex-row;
+
+        a{
+            color: #01b1fe;
+            &:active{
+                color: #215269;
+            }
         }
     }
 
