@@ -229,63 +229,87 @@ function setHeight(){
 }
 
 function timeLineProgress(timelineHeight, timelineTop){
-    // console.log("o : " + timelineHeight)
     let date, dateEndTrip
     const current = getCurrentTime()
     let stepID = -1
     let currentHours = current.hours
     let currentMinutes = current.minutes
     let time = currentHours + ":" + currentMinutes
+    let currentDateISO = new Date(dayOfTravel.concat(" ", time))
+    let stepHoursISO
+    let arrayISO_start = [], arrayISO_end = []
+    let arrayHour_start = [], arrayHour_end = []
+    let arrayDate_start, arrayDate_end
 
-    //First loop for each steps
     for (let i = 0; i < steps_hours.length; i++) {
-        //If the step is under the current time let's increment stepID
-        if(steps_hours[i].slice(0,5) <= time){
-            stepID++
-        }
-        // console.log(steps_hours[i].slice(0,5), time, stepID)
+        stepHoursISO = new Date(dayOfTravel.concat(" ", steps_hours[i]))
 
-        //Date calculation for each steps
-        date = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]), null, false)
-
-        // console.log((steps_hours[stepID]).slice(0,5))
-        // console.log((steps_hours[steps_hours.length - 1]).slice(0,5))
-
-        //Test to know if the last step is concerned
-        if(steps_hours[stepID].slice(0,5) < steps_hours[steps_hours.length - 1].slice(0,5)){
-            dateEndTrip = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]),dayOfTravel.concat(" ", steps_hours[stepID+1]), false)
+        //Check if the current date (from the computer) is greater (or equal) than one of the steps
+        if(currentDateISO >= stepHoursISO){
+            //Start date
+            arrayISO_start.push(stepHoursISO)
+            arrayHour_start.push(steps_hours[i])
+            arrayDate_start = {
+                "name" : "arrayDate_start",
+                "ISO" : arrayISO_start,
+                "hour" : arrayHour_start,
+                "id" : i
+            }
         }else{
-            dateEndTrip = calcDate(dayOfTravel.concat(" ", steps_hours[stepID]),dayOfTravel.concat(" ", steps_hours[steps_hours.length - 1]), false)
+            //End date
+            arrayISO_end.push(stepHoursISO)
+            arrayHour_end.push(steps_hours[i])
+            arrayDate_end = {
+                "name" : "arrayDate_end",
+                "ISO" : arrayISO_end,
+                "hour" : arrayHour_end
+            }
         }
     }
+
+    //---------------------------------------------------
+    //Definition of the index of the start point and the end point
+    let indexStart = arrayDate_start.id
+    let indexEnd = steps_hours.indexOf(arrayDate_end.hour[0])
+
+    //Definition of the hour of the start point and the end point
+    let hourStart = arrayDate_start.hour[arrayDate_start.hour.length - 1]
+    let hourEnd = arrayDate_end.hour[0]
+
+    //Definition of the ISO date of the start point and the end point
+    let hourStartISO = arrayDate_start.ISO[arrayDate_start.ISO.length - 1]
+    let hourEndISO = arrayDate_end.ISO[0]
+    //---------------------------------------------------
+
+    // console.log(hourStart, hourEnd)
+
+    let dateStartISO = calcDate(hourStartISO, null, true)
+    let dateEndISO = calcDate(hourEndISO, null, false)
+    //Set absOrNot to true to calcul delay
+    let betweenDates = calcDate(hourStartISO, hourEndISO, true)
 
     const container = document.querySelectorAll('.container')
     //Check container #0 but each container has the same height based on the max container height
     let maxHeightContainer = container[0].offsetHeight
-    const dot = container[stepID].querySelector('.dot--step')
-    let base = container[stepID].offsetTop + dot.offsetTop
+    const dot = container[indexStart].querySelector('.dot--step')
+    let base = container[indexStart].offsetTop + dot.offsetTop
 
-    //Calculation based on the last step done
-    let tripStartHours = Math.abs(date.hours) * 60
-    let tripStartMinutes = Math.abs(date.minutes)
-    let minutesFromStart = tripStartHours + tripStartMinutes
+    // console.log(maxHeightContainer, dot, base)
 
-    //Calculation based on the next step
-    let tripHours = Math.abs(dateEndTrip.hours) * 60
-    let tripMinutes = Math.abs(dateEndTrip.minutes)
-    let allMinutes = tripHours + tripMinutes
+    let getAllHours = betweenDates.hours
+    let getAllMinutes = betweenDates.minutes
+    let allMinutes = getAllHours*60 + getAllMinutes
+
+    let getAllHoursLast = dateStartISO.hours
+    let getAllMinutesLast = dateStartISO.minutes
+    let minutesFromStart = getAllHoursLast*60 + getAllMinutesLast
+
 
     //Let's make a test to know if we are at the end of the trip
-    //To avoid x/0 = Infinity, percent is sets to 1 when == 0 and after the trip
     let percent
-    if(steps_hours[steps_hours.length - 1].slice(0,5) <= time){
-        percent = 1
-        timeline__end__label.classList.add('start_trip')
-    }else{
-        percent = (minutesFromStart/allMinutes).toFixed(2)
-    }
+    percent = (minutesFromStart/allMinutes).toFixed(2)
 
-    // console.log(percent, ((timelineHeight/steps_cities.length)*percent).toFixed(2))
+    // console.log(minutesFromStart, allMinutes, percent)
 
     //Check if the dot--step is passed
     //In that case, added a "done" class to set his bg and border color
@@ -303,15 +327,15 @@ function timeLineProgress(timelineHeight, timelineTop){
     // console.log("base : " + base)
     // console.log(Number(((timelineHeight/steps_cities.length)*percent).toFixed(2)))
     // console.log(Number(((timelineHeight/steps_cities.length)).toFixed(2)))
-    // console.log(percent)
+    console.log(percent)
 
     heightLineEvolution = base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2))
     timeline__line__evolution.style.height = heightLineEvolution - timelineTop + "px"
     timeline__line__evolution.style.maxHeight = timelineHeight + "px"
-
-    console.log( base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2)) - timelineTop)
-    console.log(heightLineEvolution)
-    console.log(heightLineEvolution - timelineTop - maxHeightContainer)
+    //
+    // console.log( base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2)) - timelineTop)
+    // console.log(heightLineEvolution)
+    // console.log(heightLineEvolution - timelineTop - maxHeightContainer)
 }
 
 function sumArray(a, b) {
@@ -532,7 +556,7 @@ function setLineDrawHeight(index = null, heightContainer = null){
     }
 
     timeline__line__draw.style.height = (newIndex+1)*heightContainer + 1.1*offset + "px"
-    timeline__line__evolution.style.height = heightLineEvolution - NbContainerHidden*heightContainer + "px"
+    // timeline__line__evolution.style.height = heightLineEvolution - NbContainerHidden*heightContainer + "px"
 }
 
 function clientDisplay(value = name__modal.value){

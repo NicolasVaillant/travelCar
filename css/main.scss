@@ -63,6 +63,7 @@ body{
             height: auto;
             padding: $padding1;
             border: 1px solid #e8e8e8;
+            background: #e8e8e8;
 
             @include tn-flex-column;
             @include justify-left;
@@ -127,12 +128,34 @@ body{
                     background: #fdb0b0;
                 }
             }
-            label{
+            .bottom--line{
                 @include tn-flex-row;
-                gap: 1em;
-                white-space: nowrap;
                 width: 100%;
+                gap: 1em;
+                align-items: stretch!important;
+                label{
+                    @include tn-flex-row;
+                    gap: 1em;
+                    white-space: nowrap;
+                    width: 100%;
+                }
+                button{
+                    border-radius: var(--border1);
+                    width: 8vh;
+                    font-size: 25px;
+                    text-decoration: none;
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    align-content: center;
+                    padding: 0 1em;
+                    border: 0;
+                    background: #F0F0F0;
+                    border: 1px solid #c5c5c5;
+                }
             }
+
         }
         .header.travel--on--style{
             @include tn-flex-column;
@@ -268,6 +291,20 @@ body{
                     background: $green;
                     border: 0;
                     min-height: 0!important;
+                    z-index: 9999;
+
+                    i{
+                        position: absolute;
+                        bottom: -5px;
+                        font-size: 22px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-radius: 1000px;
+                        padding: 0.2em;
+                        background: #399BA1;
+                        color: var(--w);
+                        z-index: 9999;
+                    }
                 }
             }
 

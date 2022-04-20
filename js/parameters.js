@@ -1,8 +1,8 @@
 //JS FILE
 
 //Date ISO pls YYYY-MM-DD
-const dayOfTravel = "Apr 19 2022"
-const refreshInterval = 2 * 60000
+const dayOfTravel = "Apr 20 2022"
+const refreshInterval = 1000
 
 const colors = [
     "#fff",
@@ -12,9 +12,9 @@ const colors = [
 
 const steps_hours = [
     "09:10:00",
-    "10:15:00",
-    "12:00:00",
-    "13:41:00"
+    "09:50:00",
+    "10:55:00",
+    "11:45:00"
 ]
 
 const steps_cities = [

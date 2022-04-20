@@ -16,6 +16,7 @@ body main .header {
   height: auto;
   padding: 1em;
   border: 1px solid #e8e8e8;
+  background: #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +87,17 @@ body main .header .content--beforeTravel .banner--timer {
   width: 100%;
   background: #fdb0b0;
 }
-body main .header label {
+body main .header .bottom--line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+  align-items: stretch !important;
+}
+body main .header .bottom--line label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,6 +106,21 @@ body main .header label {
   gap: 1em;
   white-space: nowrap;
   width: 100%;
+}
+body main .header .bottom--line button {
+  border-radius: var(--border1);
+  width: 8vh;
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0 1em;
+  border: 0;
+  background: #F0F0F0;
+  border: 1px solid #c5c5c5;
 }
 body main .header.travel--on--style {
   display: flex;
@@ -244,6 +270,19 @@ body main .content .timeline .timeline--line--evolution {
   background: #399BA1;
   border: 0;
   min-height: 0 !important;
+  z-index: 9999;
+}
+body main .content .timeline .timeline--line--evolution i {
+  position: absolute;
+  bottom: -5px;
+  font-size: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1000px;
+  padding: 0.2em;
+  background: #399BA1;
+  color: var(--w);
+  z-index: 9999;
 }
 body main .content .clients {
   position: absolute;

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#e8e8e8">
     
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico.ico"/>
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_16.png" sizes="16x16"/>
@@ -29,7 +30,7 @@
 <body>
 <main class="disabled--main">
     <!--header infos-->
-    <div class="header stripes">
+    <div class="header">
         <div class="content--beforeTravel">
             <h1>Plan de route</h1>
             <div class="shortcuts">
@@ -44,9 +45,13 @@
                 <p class="time_left"></p>
             </div>
         </div>
-        <label for="name--main">Qui êtes-vous ?
-            <select name="name--main" id="name--main"></select>
-        </label>
+        <div class="bottom--line">
+            <label for="name--main">Qui êtes-vous ?
+                <select name="name--main" id="name--main"></select>
+            </label>
+            <button><i class="fas fa-car"></i></button>
+        </div>
+        
     </div>
     
     <div class="disclaimer--time">
@@ -66,10 +71,14 @@
                 <span></span>
             </div>
             <div class="timeline--line--draw"></div>
-            <div class="timeline--line--evolution"></div>
+            <div class="timeline--line--evolution">
+                <i class="fas fa-car"></i>
+            </div>
         </div>
         <div class="clients"></div>
     </div>
+    
+<!--    <p>Made with <3 by Nicoco</p>-->
 </main>
 
 <div class="modal close--modal">
