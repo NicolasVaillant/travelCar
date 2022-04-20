@@ -305,6 +305,10 @@ body{
                         color: var(--w);
                         z-index: 9999;
                     }
+
+                    .hidden_ico{
+                        display: none;
+                    }
                 }
             }
 

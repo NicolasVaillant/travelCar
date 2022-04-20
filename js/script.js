@@ -1,14 +1,13 @@
 //JS FILE
 
 const dayOfTravelISO = dayOfTravel.concat(" ", steps_hours[0])
-const endTrip = dayOfTravel.concat(" ", steps_hours[steps_hours.length - 1])
 
 const time_left = document.querySelector('.time_left')
 const timeline__line = document.querySelector('.timeline--line')
 const timeline__start__label = document.querySelector('.timeline--start')
-const timeline__end__label = document.querySelector('.timeline--end')
 const timeline__line__draw = document.querySelector('.timeline--line--draw')
 const timeline__line__evolution = document.querySelector('.timeline--line--evolution')
+const car__timeline = document.querySelector('.car--timeline')
 const header = document.querySelector('.header')
 const clients = document.querySelector('.clients')
 
@@ -106,6 +105,7 @@ function calcDate(iso, to = null, absOrNot){
 function displayTimeLeft(){
     //set absOrNot to false
     const date = calcDate(dayOfTravelISO,null,false)
+    console.log(date)
     if(date.day <= 0){
         if(date.hours <= 0){
             if(date.minutes <= 0){
@@ -229,9 +229,7 @@ function setHeight(){
 }
 
 function timeLineProgress(timelineHeight, timelineTop){
-    let date, dateEndTrip
     const current = getCurrentTime()
-    let stepID = -1
     let currentHours = current.hours
     let currentMinutes = current.minutes
     let time = currentHours + ":" + currentMinutes
@@ -270,72 +268,67 @@ function timeLineProgress(timelineHeight, timelineTop){
     //---------------------------------------------------
     //Definition of the index of the start point and the end point
     let indexStart = arrayDate_start.id
-    let indexEnd = steps_hours.indexOf(arrayDate_end.hour[0])
-
-    //Definition of the hour of the start point and the end point
-    let hourStart = arrayDate_start.hour[arrayDate_start.hour.length - 1]
-    let hourEnd = arrayDate_end.hour[0]
 
     //Definition of the ISO date of the start point and the end point
-    let hourStartISO = arrayDate_start.ISO[arrayDate_start.ISO.length - 1]
-    let hourEndISO = arrayDate_end.ISO[0]
-    //---------------------------------------------------
+    let hourStartISO,hourEndISO
 
-    // console.log(hourStart, hourEnd)
+    if(arrayDate_end !== undefined){
+        car__timeline.classList.remove('hidden_ico')
+        hourStartISO = arrayDate_start.ISO[arrayDate_start.ISO.length - 1]
+        hourEndISO = arrayDate_end.ISO[0]
 
-    let dateStartISO = calcDate(hourStartISO, null, true)
-    let dateEndISO = calcDate(hourEndISO, null, false)
-    //Set absOrNot to true to calcul delay
-    let betweenDates = calcDate(hourStartISO, hourEndISO, true)
+        let dateStartISO = calcDate(hourStartISO, null, true)
+        //Set absOrNot to true to calcul delay
+        let betweenDates = calcDate(hourStartISO, hourEndISO, true)
 
-    const container = document.querySelectorAll('.container')
-    //Check container #0 but each container has the same height based on the max container height
-    let maxHeightContainer = container[0].offsetHeight
-    const dot = container[indexStart].querySelector('.dot--step')
-    let base = container[indexStart].offsetTop + dot.offsetTop
+        const container = document.querySelectorAll('.container')
+        //Check container #0 but each container has the same height based on the max container height
+        const dot = container[indexStart].querySelector('.dot--step')
+        let base = container[indexStart].offsetTop + dot.offsetTop
 
-    // console.log(maxHeightContainer, dot, base)
+        // console.log(arrayDate_start, arrayDate_end)
 
-    let getAllHours = betweenDates.hours
-    let getAllMinutes = betweenDates.minutes
-    let allMinutes = getAllHours*60 + getAllMinutes
+        // console.log(maxHeightContainer, dot, base)
 
-    let getAllHoursLast = dateStartISO.hours
-    let getAllMinutesLast = dateStartISO.minutes
-    let minutesFromStart = getAllHoursLast*60 + getAllMinutesLast
+        let getAllHours = betweenDates.hours
+        let getAllMinutes = betweenDates.minutes
+        let allMinutes = getAllHours*60 + getAllMinutes
 
+        let getAllHoursLast = dateStartISO.hours
+        let getAllMinutesLast = dateStartISO.minutes
+        let minutesFromStart = getAllHoursLast*60 + getAllMinutesLast
 
-    //Let's make a test to know if we are at the end of the trip
-    let percent
-    percent = (minutesFromStart/allMinutes).toFixed(2)
+        //Let's make a test to know if we are at the end of the trip
+        let percent
+        percent = (minutesFromStart/allMinutes).toFixed(2)
 
-    // console.log(minutesFromStart, allMinutes, percent)
+        timeline__line__evolution.style.maxHeight = timelineHeight + "px"
 
-    //Check if the dot--step is passed
-    //In that case, added a "done" class to set his bg and border color
-    for (let i = 0; i < steps_hours.length; i++) {
-        if(steps_hours[i].slice(0,5) <= time){
+        if(Number(percent) === 1){
+            timeline__line__evolution.style.height = timelineHeight + "px"
+            //Be sure all dot are checked
             const dot__step = document.querySelectorAll('.dot--step')
             dot__step.forEach(e => {
-                if(e.dataset.num === i.toString()){
-                    e.classList.add('done')
-                }
+                e.classList.add('done')
             })
+        }else{
+            heightLineEvolution = base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2))
+            timeline__line__evolution.style.height = heightLineEvolution - timelineTop + "px"
+        }
+
+        //Check if the dot--step is passed
+        //In that case, added a "done" class to set his bg and border color
+        for (let i = 0; i < steps_hours.length; i++) {
+            if(steps_hours[i].slice(0,5) <= time){
+                const dot__step = document.querySelectorAll('.dot--step')
+                dot__step.forEach(e => {
+                    if(e.dataset.num === i.toString()){
+                        e.classList.add('done')
+                    }
+                })
+            }
         }
     }
-
-    // console.log("base : " + base)
-    // console.log(Number(((timelineHeight/steps_cities.length)*percent).toFixed(2)))
-    // console.log(Number(((timelineHeight/steps_cities.length)).toFixed(2)))
-    console.log(percent)
-
-    heightLineEvolution = base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2))
-    timeline__line__evolution.style.height = heightLineEvolution - timelineTop + "px"
-    timeline__line__evolution.style.maxHeight = timelineHeight + "px"
-    //
-    // console.log( base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2)) - timelineTop)
-    // console.log(heightLineEvolution)
-    // console.log(heightLineEvolution - timelineTop - maxHeightContainer)
 }
 
 function sumArray(a, b) {
@@ -556,7 +549,6 @@ function setLineDrawHeight(index = null, heightContainer = null){
     }
 
 
-
     timeline__line__draw.style.height = (newIndex+1)*heightContainer + 1.1*offset + "px"
     // timeline__line__evolution.style.height = heightLineEvolution - NbContainerHidden*heightContainer + "px"
 }
@@ -652,11 +644,24 @@ function setStepsClients(){
     common.forEach(element => {
         count[element] = (count[element] || 0) + 1;
     })
-    /**
-     * count : how many customer in the same place
-     * path_clients : path followed by customers
-     */
 }
+
+let minHeight = 0
+
+function containerHeight(){
+    let maxHeightContainer = []
+    const container = document.querySelectorAll('.container')
+    container.forEach(e => {
+        maxHeightContainer.push(e.querySelector('.container--options').offsetHeight)
+    })
+    minHeight = Math.max(...maxHeightContainer) + 20
+    container.forEach(e => {
+        e.style.minHeight = minHeight + "px"
+    })
+    console.info("Set default design")
+    // console.info("minHeight container : " + minHeight)
+}
+
 
 let support = ""
 window.onload = function (){
@@ -697,22 +702,5 @@ window.onload = function (){
         }
     )
 }
-
-let minHeight = 0
-
-function containerHeight(){
-    let maxHeightContainer = []
-    const container = document.querySelectorAll('.container')
-    container.forEach(e => {
-        maxHeightContainer.push(e.querySelector('.container--options').offsetHeight)
-    })
-    minHeight = Math.max(...maxHeightContainer) + 20
-    container.forEach(e => {
-        e.style.minHeight = minHeight + "px"
-    })
-    console.info("Set default design")
-    console.info("minHeight container : " + minHeight)
-}
-
 
 

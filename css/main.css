@@ -284,6 +284,9 @@ body main .content .timeline .timeline--line--evolution i {
   color: var(--w);
   z-index: 9999;
 }
+body main .content .timeline .timeline--line--evolution .hidden_ico {
+  display: none;
+}
 body main .content .clients {
   position: absolute;
   top: 0;
