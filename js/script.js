@@ -30,13 +30,23 @@ const leftPosition = 30
 let heightLineEvolution
 
 name__main.addEventListener('change', () => {
-    const client = document.querySelectorAll('.client')
-    client.forEach(e => {
-        if(e.dataset.name === steps_clients[name__main.value]){
-            const midScreenClient = e.offsetTop + (e.offsetHeight/2)
-            window.scroll(0, midScreenClient)
+    const dot__step = document.querySelectorAll('.dot--step')
+    for (let i = 0; i < steps_hours.length; i++) {
+        let nb = 0
+        let container = dot__step[i].closest('.container')
+        console.log(container)
+        if(container.classList.contains('remove--display--client')){
+            nb++
+            console.log(container.offsetHeight)
         }
-    })
+        const client = document.querySelectorAll('.client')
+        client.forEach(e => {
+            if(e.dataset.name === steps_clients[name__main.value]){
+                const midScreenClient = e.offsetTop + (e.offsetHeight/2) - container.offsetHeight*nb
+                window.scroll(0, midScreenClient)
+            }
+        })
+    }
     clientDisplay(name__main.value)
 })
 
@@ -489,6 +499,7 @@ function changeDisplayClients(e){
         }
     }
 
+
     setOffsetTopClient(minHeight)
     setLineDrawHeight(diff, minHeight)
 
@@ -559,17 +570,37 @@ function clientDisplay(value = name__modal.value){
         if(e.dataset.name !== steps_clients[value]){
             if(date.day <= 0 && date.hours <= 0){
                 a.remove()
+                removeUselessHeight()
             }else{
                 a.modify()
             }
         }else{
             if(date.day <= 0 && date.hours <= 0){
                 a.show("remove")
+                removeUselessHeight()
             }else{
                 a.show("modify")
             }
         }
     })
+}
+
+function removeUselessHeight(){
+    const dot__step = document.querySelectorAll('.dot--step')
+    let nb = 0
+    for (let i = 0; i < steps_hours.length; i++) {
+        let container = dot__step[i].closest('.container')
+        if(container.classList.contains('remove--display--client')){
+            nb++
+        }
+        const client = document.querySelectorAll('.client')
+        client.forEach(e => {
+            if(e.dataset.name === steps_clients[name__main.value]){
+                const midScreenClient = e.offsetTop + (e.offsetHeight/2) - nb*container.offsetHeight
+                window.scroll(0, midScreenClient)
+            }
+        })
+    }
 }
 
 function setShortcutButton(){
