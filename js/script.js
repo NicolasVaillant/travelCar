@@ -30,6 +30,13 @@ const leftPosition = 30
 let heightLineEvolution
 
 name__main.addEventListener('change', () => {
+    const client = document.querySelectorAll('.client')
+    client.forEach(e => {
+        if(e.dataset.name === steps_clients[name__main.value]){
+            const midScreenClient = e.offsetTop + (e.offsetHeight/2)
+            window.scroll(0, midScreenClient)
+        }
+    })
     clientDisplay(name__main.value)
 })
 
