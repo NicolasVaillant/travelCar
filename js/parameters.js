@@ -5,10 +5,10 @@ const dayOfTravel = "Apr 21 2022"
 const refreshInterval = 1000
 
 const steps_hours = [
-    "12:30:00",
-    "14:10:00",
-    "17:23:00",
-    "18:11:00"
+    "07:30:00",
+    "08:10:00",
+    "11:23:00",
+    "13:11:00"
 ]
 
 const steps_cities = [
