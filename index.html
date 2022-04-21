@@ -5,25 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Suivre mon trajet BlaBlaCar."/>
+    <meta name="author" content="Thérence F."/>
+    <meta property="og:title" content="Thérence F."/>
+    <meta property="og:image" content="https://nicolasvaillant.net/in/ressources/img/thumbnail.png"/>
+    <meta property="og:url" content="https://therenceforot.fr"/>
+    <meta property="og:site_name" content="Thérence F."/>
+    <meta property="og:description" content="Suivre mon trajet BlaBlaCar."/>
+    <meta name="twitter:title" content="Thérence F." />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="https://therenceforot.fr" />
+    <meta name="twitter:card" content="Suivre mon trajet BlaBlaCar." />
+    <!-- Check browser compatibility : https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color -->
     <meta name="theme-color" content="#e8e8e8">
-    
+    <!-- shortcut icon for all sizes -->
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico.ico"/>
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_16.png" sizes="16x16"/>
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_32.png" sizes="32x32"/>
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_48.png" sizes="48x48"/>
     <link rel="shortcut icon" type="image/png" href="ressources/ico/car_ico_64.png" sizes="64x64"/>
-
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/anim.css">
     <link rel="stylesheet" href="css/root.css">
     <link rel="stylesheet" href="css/main.css">
-
     <!-- Never forget to import our beloved jQuery <3 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/parameters.js" defer></script>
     <script src="js/script.js" defer></script>
-    
-    <!-- TOOLS -->
+    <!-- ICONS -->
     <link rel="stylesheet" href="fontawesome/css/all_used.css">
+    <link rel="start" title="Thérence F. | Plan de route" href="index.html" />
     <title>Thérence F. | Plan de route</title>
 </head>
 
@@ -53,31 +64,35 @@
         </div>
         
     </div>
-    
+    <!-- Banner displayed as a disclaimer -->
     <div class="disclaimer--time">
         <i class="fas fa-exclamation-circle"></i>
         <p class="">Horaires approximatifs à confirmer selon la circulation</p>
     </div>
-    
-    <!--timeline-->
+    <!-- Main content : timeline -->
     <div class="content">
         <div class="timeline">
+            <!-- Start tag -->
             <div class="timeline--start">
                 <p>Départ</p>
             </div>
+            <!-- Container used as main timeline -->
             <div class="timeline--line"></div>
+            <!-- End tag -->
             <div class="timeline--end">
                 <p>Arrivée</p>
-                <span></span>
             </div>
+            <!-- Container used as main timeline : style displayed -->
             <div class="timeline--line--draw"></div>
+            <!-- Container used to display trip evolution : style displayed -->
             <div class="timeline--line--evolution">
                 <i class="fas fa-car car--timeline hidden_ico"></i>
             </div>
         </div>
+        <!-- Container used to set clients -->
         <div class="clients"></div>
     </div>
-    
+    <!-- Container used to give car information -->
     <div class="car--info" id="anchor--car">
         <h1>Retrouver la voiture</h1>
         <hr>
@@ -101,14 +116,13 @@
                 </div>
             </div>
         </div>
-        
     </div>
-    
+    <!-- Footer copyright : author -->
     <div class="footer--copyright">
         <p>Made by <a href="https://github.com/NicolasVaillant">@NicolasVaillant</a></p>
     </div>
 </main>
-
+<!-- Modal on start -->
 <div class="modal close--modal">
     <h1>Bonjour</h1>
     <h3>Quelques précisions avant le voyage</h3>
@@ -142,7 +156,5 @@
 
     </div>
 </div>
-
 </body>
-
 </html>

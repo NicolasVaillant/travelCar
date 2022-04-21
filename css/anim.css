@@ -58,7 +58,7 @@
     padding: .5em 1em;
     width: fit-content;
     min-width: 10vw;
-    background: #e9e9e9;
+    background: var(--button);
     border-radius: 1000px;
 }
 .shortcuts--maps{
@@ -74,19 +74,22 @@
     background: none;
     text-decoration: unset;
 }
+.shortcuts--maps:visited {
+    color: var(--link_visited)!important;
+}
 .shortcuts--maps p{
     text-decoration: underline;
 }
 
 .opt--city{
-    color: black;
+    color: var(--main_title);
 }
 .opt--subtitle{
     color: grey;
     font-weight: lighter;
 }
 .opt--added{
-    box-shadow: 0 6px 15px 0 #b7b6b6;
+    box-shadow: 0 6px 15px 0 var(--box_shadow_opacity);
     height: fit-content;
     width: 100%;
     background: #ffbc00;
@@ -111,11 +114,16 @@
 .dot--end{
     width: 20px;
     height: 20px;
-    background: #fff;
-    border: 3px solid #c5c5c5;
+    background: var(--timeline);
+    border: 3px solid var(--main_container);
     border-radius: 1000px;
     position: absolute;
     z-index: 2000;
+}
+.dot--start,
+.dot--end{
+    border: 3px solid var(--client) !important;
+    background: var(--w);
 }
 
 .client--container{
@@ -158,7 +166,7 @@
     min-width: 20px;
     height: 100%;
     /*background: #83b0f2;*/
-    background: #01B1FE;
+    background: var(--client);
     border-radius: 1000px;
     position: absolute;
     top: 0;

@@ -45,3 +45,45 @@ body{
     height: 20px;
     cursor: pointer;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main_container : #2E383D;
+        --main_title : #fff;
+        --primair_color : #399BA1;
+        --element : #fff;
+        --secondary_container : #D7D7D7;
+        --secondary_title : #8D8D8D;
+        --client : #01B1FE;
+        --link_visited : var(--client);
+        --button: #878890;
+
+        --grey1: #c5c5c5;
+
+        --box_shadow : #161b1d;
+        --box_shadow_opacity : #2a3436;
+        --box_shadow_modal : #161b1d;
+        --timeline : #3E5561;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --main_container : #fff;
+        --main_title : #000;
+        --primair_color : #399BA1;
+        --element : #000;
+        --secondary_container : #e8e8e8;
+        --secondary_title : #8D8D8D;
+        --client : #01B1FE;
+        --link_visited : var(--client);
+        --button: var(--secondary_container);
+
+        --grey1: #c5c5c5;
+
+        --box_shadow : var(--grey1);
+        --box_shadow_opacity : var(--grey1);
+        --box_shadow_modal : #54595a;
+        --timeline : var(--grey1);
+    }
+}
