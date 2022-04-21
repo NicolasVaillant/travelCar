@@ -403,6 +403,7 @@ function submitModal(callback){
 
     const name_value = name__modal.value
     const luggage_value = luggage__modal.value
+    const nb_luggage_value = nb__luggage.value
 
     name__main.selectedIndex = name_value
 
@@ -418,18 +419,30 @@ function submitModal(callback){
     })
 
     try{
+        // Store data
         $.ajax({
             type : "POST",
             url  : "../php/store_client_data.php",
-            data : { name : steps_clients[name_value], type_luggage : type_luggage[luggage_value] }
+            data : { name : steps_clients[name_value], type_luggage : type_luggage[luggage_value], luggage_count : nb_luggage_value }
         });
-        // In other way, try to get the luggage :
+        // Get specific data for one client
         $.ajax({
             type : "POST",
-            url  : "../php/get_client_data.php",
+            url  : "../php/get_name_client_data.php",
             data : { name : steps_clients[name_value] },
             success: function(res) {
                 console.log(steps_clients[name_value] + " -> " + res)
+                // Return example: Lucie -> {"type_luggage":"Grande valise","luggage_count":"1","updated_at":"2022-04-21-15-58-55"}
+            }
+        });
+        // Get all data for each client
+        $.ajax({
+            type : "POST",
+            url  : "../php/get_all_clients_data.php",
+            data : {},
+            success: function(res) {
+                console.log(res)
+                // Return example: {"Kim":{"type_luggage":"Sac \u00e0 dos","luggage_count":"1","updated_at":"2022-04-21-15-58-26"},"Myriam":{"type_luggage":"Sac \u00e0 dos","luggage_count":"1","updated_at":"2022-04-21-12-00-52"},"Lucie":{"type_luggage":"Grande valise","luggage_count":"1","updated_at":"2022-04-21-15-58-55"}}
             }
         });
     }catch (e) {
