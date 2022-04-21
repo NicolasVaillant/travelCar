@@ -73,6 +73,7 @@
     border: 0;
     background: none;
     text-decoration: unset;
+    color: var(--link_visited);
 }
 .shortcuts--maps:visited {
     color: var(--link_visited)!important;
