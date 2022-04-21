@@ -5,6 +5,7 @@ const dayOfTravelISO = dayOfTravel.concat(" ", steps_hours[0])
 const time_left = document.querySelector('.time_left')
 const timeline__line = document.querySelector('.timeline--line')
 const timeline__start__label = document.querySelector('.timeline--start')
+const timeline__end__label = document.querySelector('.timeline--end')
 const timeline__line__draw = document.querySelector('.timeline--line--draw')
 const timeline__line__evolution = document.querySelector('.timeline--line--evolution')
 const car__timeline = document.querySelector('.car--timeline')
@@ -302,6 +303,7 @@ function timeLineProgress(timelineHeight, timelineTop){
         if(hourEnd === steps_hours[steps_hours.length - 1]){
             if(Number(percent) === 1){
                 timeline__line__evolution.style.height = timelineHeight + "px"
+                timeline__end__label.classList.add('start_trip')
             }else{
                 heightLineEvolution = base + Number(((timelineHeight/steps_cities.length)*percent).toFixed(2))
                 timeline__line__evolution.style.height = heightLineEvolution - timelineTop + "px"

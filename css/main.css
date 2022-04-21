@@ -277,12 +277,25 @@ body main .content .timeline .timeline--line--evolution i {
   bottom: -5px;
   font-size: 22px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(1);
   border-radius: 1000px;
   padding: 0.2em;
   background: #399BA1;
   color: var(--w);
   z-index: 9999;
+  box-shadow: 0 0 0 0 black;
+  animation: pulse-black 2s infinite;
+}
+@keyframes pulse-black {
+  0% {
+    box-shadow: 0 0 0 0 rgba(57, 155, 161, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(57, 155, 161, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(57, 155, 161, 0);
+  }
 }
 body main .content .timeline .timeline--line--evolution .hidden_ico {
   display: none;
