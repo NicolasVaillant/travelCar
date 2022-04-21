@@ -175,7 +175,6 @@ async function createSteps(callback){
         buttonToMap.appendChild(shortcut_localisation_text)
         container_options.appendChild(buttonToMap)
 
-        let url = ""
         let localisation = steps_cities[i] + " " + steps_subtitles[i]
         if(support === "Apple"){
             buttonToMap.href = "https://maps.apple.com?q=" + localisation
@@ -531,10 +530,8 @@ function setLineDrawHeight(index = null, heightContainer = null){
     const offset = heightCalc() + 8
 
     const clientVisible = document.querySelector('.client:not(.remove--display)')
-    const containerHidden = document.querySelectorAll('.container.remove--display--client')
     //In case of customer display change : set NbContainerHidden + 1 avoid the last container height
     //Maybe not the best idea I've ever had
-    let NbContainerHidden = containerHidden.length + 1
     let newIndex
     if(clientVisible.dataset.start === "0"){
         newIndex = index
@@ -542,9 +539,7 @@ function setLineDrawHeight(index = null, heightContainer = null){
         newIndex = index + 1
     }
 
-
     timeline__line__draw.style.height = (newIndex+1)*heightContainer + 1.1*offset + "px"
-    // timeline__line__evolution.style.height = heightLineEvolution - NbContainerHidden*heightContainer + "px"
 }
 
 function clientDisplay(value = name__modal.value){
@@ -590,21 +585,6 @@ function getCurrentTime(){
     const hours = date.getHours()
     const minutes = date.getMinutes()
     return {hours : hours, minutes : minutes}
-}
-
-function setTimeLine(){
-
-    const dot__step = document.querySelectorAll('.dot--step')
-    const container = document.querySelectorAll('.container')
-    let stock_dot = [], stock_dot_e = [], stock_container = []
-
-    dot__step.forEach(e => {
-        stock_dot.push(e.offsetTop)
-        stock_dot_e.push(e.offsetHeight)
-    })
-    container.forEach(e => {
-        stock_container.push(e.offsetTop)
-    })
 }
 
 let path_clients = []
@@ -690,7 +670,6 @@ window.onload = function (){
         () => {
             setHeight()
             setClients()
-            setTimeLine()
         },
         (error) => {
             console.log(error)
