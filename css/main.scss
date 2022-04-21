@@ -29,11 +29,6 @@
     @include flexCol;
 }
 
-//COLORS---------------
-$white : #fff;
-$grey3 : #8D8D8D;
-//COLORS---------------
-
 //PARAMETERS-----------
 $padding1 : 1em;
 $padding2 : 2em;
@@ -124,7 +119,7 @@ body{
 
                 .banner--timer{
                     width: 100%;
-                    background: #fdb0b0;
+                    background: var(--banner);
                 }
             }
             .bottom--line{
@@ -201,7 +196,7 @@ body{
         .disclaimer--time{
             @include tn-flex-row;
             gap: 1em;
-            background: #fdb0b0;
+            background: var(--banner);
             padding: $padding1;
             width: 100%;
 
@@ -227,7 +222,7 @@ body{
 
                 @mixin labels{
                     background: var(--timeline);
-                    color: $white;
+                    color: var(--w);
                     min-width: 20vw;
                     width: fit-content;
                     padding: .5em;
@@ -295,7 +290,7 @@ body{
                         transform: translateX(-50%) scale(1);
                         border-radius: 1000px;
                         padding: 0.2em;
-                        background: #399BA1;
+                        background: var(--primair_color);
                         color: var(--w);
                         z-index: 9999;
                         box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
@@ -387,7 +382,7 @@ body{
                         .col-l,
                         .col-r{
                             width: 10%;
-                            background: #01b1fe;
+                            background: var(--client);
                             height: 100%;
                             @include tn-flex-column;
                             justify-content: space-evenly;
@@ -419,7 +414,7 @@ body{
             position: absolute;
             top: 0;
             left: 0;
-            background: #494949;
+            background: var(--disabled_main);
             opacity: .75;
             height: 100%;
             width: 100%;
@@ -437,9 +432,9 @@ body{
             color: var(--secondary_title);
         }
         a{
-            color: #01b1fe;
+            color: var(--client);
             &:active{
-                color: #215269;
+                color: var(--link_visited);
             }
         }
     }
@@ -466,7 +461,7 @@ body{
             color: var(--main_title);
         }
         h3{
-            color: $grey3;
+            color: var(--secondary_title);
         }
 
         .content{
@@ -529,7 +524,7 @@ body{
                     @include labels;
                 }
                 p:last-child{
-                    color: #ff3b64;
+                    color: var(--danger);
                     font-weight: bold;
                     opacity: 0;
                     display: none;

@@ -88,7 +88,7 @@ body main .header .content--beforeTravel .shortcuts {
 }
 body main .header .content--beforeTravel .banner--timer {
   width: 100%;
-  background: #fdb0b0;
+  background: var(--banner);
 }
 body main .header .bottom--line {
   display: flex;
@@ -183,7 +183,7 @@ body main .disclaimer--time {
   align-content: center;
   flex-direction: row;
   gap: 1em;
-  background: #fdb0b0;
+  background: var(--banner);
   padding: 1em;
   width: 100%;
   display: none;
@@ -214,7 +214,7 @@ body main .content .timeline {
 body main .content .timeline .timeline--start,
 body main .content .timeline .timeline--end {
   background: var(--timeline);
-  color: #fff;
+  color: var(--w);
   min-width: 20vw;
   width: fit-content;
   padding: 0.5em;
@@ -277,7 +277,7 @@ body main .content .timeline .timeline--line--evolution i {
   transform: translateX(-50%) scale(1);
   border-radius: 1000px;
   padding: 0.2em;
-  background: #399BA1;
+  background: var(--primair_color);
   color: var(--w);
   z-index: 9999;
   box-shadow: 0 0 0 0 black;
@@ -371,7 +371,7 @@ body main .car--info .inside .wrapper .im--car {
 body main .car--info .inside .wrapper .im--car .col-l,
 body main .car--info .inside .wrapper .im--car .col-r {
   width: 10%;
-  background: #01b1fe;
+  background: var(--client);
   height: 100%;
   display: flex;
   align-items: center;
@@ -398,7 +398,7 @@ body main.disabled--main:after {
   position: absolute;
   top: 0;
   left: 0;
-  background: #494949;
+  background: var(--disabled_main);
   opacity: 0.75;
   height: 100%;
   width: 100%;
@@ -418,10 +418,10 @@ body .footer--copyright p {
   color: var(--secondary_title);
 }
 body .footer--copyright a {
-  color: #01b1fe;
+  color: var(--client);
 }
 body .footer--copyright a:active {
-  color: #215269;
+  color: var(--link_visited);
 }
 body .modal {
   z-index: 99999;
@@ -449,7 +449,7 @@ body .modal h1 {
   color: var(--main_title);
 }
 body .modal h3 {
-  color: #8D8D8D;
+  color: var(--secondary_title);
 }
 body .modal .content {
   display: flex;
@@ -524,7 +524,7 @@ body .modal .content .luggage--all .luggage p {
   font-weight: bold;
 }
 body .modal .content .luggage--all p:last-child {
-  color: #ff3b64;
+  color: var(--danger);
   font-weight: bold;
   opacity: 0;
   display: none;
