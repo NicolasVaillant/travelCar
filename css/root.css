@@ -55,8 +55,10 @@ body{
         --secondary_container : #D7D7D7;
         --secondary_title : #8D8D8D;
         --client : #01B1FE;
-        --link_visited : #215269;
+        --link_visited : var(--client);
         --button: #878890;
+        --grey_contrast :#c7c7c7;
+        --tag : #fff0f0;
 
         --grey1: #c5c5c5;
 
@@ -81,8 +83,10 @@ body{
         --secondary_container : #e8e8e8;
         --secondary_title : #8D8D8D;
         --client : #01B1FE;
-        --link_visited : #215269;
+        --link_visited : #015e87;
         --button: var(--secondary_container);
+        --grey_contrast : #585858;
+        --tag : #353535;
 
         --grey1: #c5c5c5;
 

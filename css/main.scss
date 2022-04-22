@@ -67,24 +67,6 @@ body{
                 width: 100%;
             }
 
-            .group_m{
-                width: 100%;
-                label{
-                    width: 100%;
-                    white-space: nowrap;
-                    gap: 1em;
-                    @include tn-flex-row;
-
-                    select{
-                        width: 100%;
-                        border: 1px solid black;
-                        //outline: var(--primair_color);
-                        padding: .5em;
-                        border-radius: var(--border1);
-                    }
-                }
-            }
-
             .content--beforeTravel{
                 $h : .5em;
                 height: auto;
@@ -222,7 +204,7 @@ body{
 
                 @mixin labels{
                     background: var(--timeline);
-                    color: var(--w);
+                    color: var(--tag);
                     min-width: 20vw;
                     width: fit-content;
                     padding: .5em;
@@ -240,6 +222,7 @@ body{
                     &.start_trip{
                         background: var(--primair_color);
                         border: 1px solid var(--primair_color);
+                        color:#0b2935!important;
                     }
                 }
 
@@ -354,7 +337,7 @@ body{
                 margin-top: 1em;
 
                 p{
-                    color: var(--secondary_title);
+                    color: var(--grey_contrast);
                 }
 
                 .wrapper{
@@ -432,7 +415,7 @@ body{
             color: var(--secondary_title);
         }
         a{
-            color: var(--client);
+            color: var(--link_visited);
             &:active{
                 color: var(--link_visited);
             }

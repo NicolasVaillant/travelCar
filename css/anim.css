@@ -60,6 +60,7 @@
     min-width: 10vw;
     background: var(--button);
     border-radius: 1000px;
+    color: #222020;
 }
 .shortcuts--maps{
     display: flex;
@@ -86,7 +87,7 @@
     color: var(--main_title);
 }
 .opt--subtitle{
-    color: grey;
+    color: var(--grey_contrast);
     font-weight: lighter;
 }
 .opt--added{
@@ -105,9 +106,10 @@
 }
 .opt--added--title{
     color: black;
+    font-weight: bold;
 }
 .opt--added--p{
-    color: grey;
+    color: #373737;
 }
 
 .dot--step,

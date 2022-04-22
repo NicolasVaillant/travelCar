@@ -27,25 +27,6 @@ body main .header {
   align-items: flex-start;
   gap: 0.5em;
 }
-body main .header .group_m {
-  width: 100%;
-}
-body main .header .group_m label {
-  width: 100%;
-  white-space: nowrap;
-  gap: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  flex-direction: row;
-}
-body main .header .group_m label select {
-  width: 100%;
-  border: 1px solid black;
-  padding: 0.5em;
-  border-radius: var(--border1);
-}
 body main .header .content--beforeTravel {
   height: auto;
   width: 100%;
@@ -214,7 +195,7 @@ body main .content .timeline {
 body main .content .timeline .timeline--start,
 body main .content .timeline .timeline--end {
   background: var(--timeline);
-  color: var(--w);
+  color: var(--tag);
   min-width: 20vw;
   width: fit-content;
   padding: 0.5em;
@@ -230,6 +211,7 @@ body main .content .timeline .timeline--start.start_trip,
 body main .content .timeline .timeline--end.start_trip {
   background: var(--primair_color);
   border: 1px solid var(--primair_color);
+  color: #0b2935 !important;
 }
 body main .content .timeline .timeline--line {
   width: 100%;
@@ -338,7 +320,7 @@ body main .car--info .inside {
   margin-top: 1em;
 }
 body main .car--info .inside p {
-  color: var(--secondary_title);
+  color: var(--grey_contrast);
 }
 body main .car--info .inside .wrapper {
   display: flex;
@@ -418,7 +400,7 @@ body .footer--copyright p {
   color: var(--secondary_title);
 }
 body .footer--copyright a {
-  color: var(--client);
+  color: var(--link_visited);
 }
 body .footer--copyright a:active {
   color: var(--link_visited);
