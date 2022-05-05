@@ -1,5 +1,5 @@
 # travelCar
-Set a car trip w/ customers
+Set a car trip with customers
 
 This app allow customers to see when they got picked during the car trip
 
