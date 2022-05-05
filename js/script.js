@@ -241,7 +241,7 @@ function setHeight(){
         }
     }
 }
-
+let lastStep = []
 function timeLineProgress(timelineHeight, timelineTop){
     const current = getCurrentTime()
     let currentHours = current.hours
@@ -299,6 +299,11 @@ function timeLineProgress(timelineHeight, timelineTop){
         const container = document.querySelectorAll('.container')
         //Check container #0 but each container has the same height based on the max container height
         const dot = container[indexStart].querySelector('.dot--step')
+
+        if(lastStep[lastStep.length - 1] !== dot){
+            lastStep.push(dot)
+        }
+
         //valueOffsetDot initial value defined by tests
         let valueOffsetDot = 4
         let base = container[indexStart].offsetTop + valueOffsetDot*dot.offsetTop
@@ -512,7 +517,6 @@ function changeDisplayClients(e){
         }
     }
 
-
     setOffsetTopClient(minHeight)
     setLineDrawHeight(diff, minHeight)
 
@@ -687,6 +691,18 @@ function containerHeight(){
     // console.info("minHeight container : " + minHeight)
 }
 
+function nextStepEvent(){
+    let current, next
+    const dot = document.querySelectorAll('.dot--step')
+    dot.forEach(e => {
+        if(e.dataset.num === lastStep[lastStep.length - 1].dataset.num){
+            current = e
+        }
+        if(e.dataset.num === (Number(lastStep[lastStep.length - 1].dataset.num) + 1).toString()){
+            next = e
+        }
+    })
+}
 
 let support = ""
 window.onload = function (){
