@@ -74,7 +74,7 @@ body{
         height: 1.8em;
         line-height: 40px;
         padding: 0;
-        background-color: #26a69a;
+        background-color: var(--primair_color_op);
         border-radius: 50%;
         -webkit-transition: background-color .3s;
         transition: background-color .3s;
@@ -102,6 +102,9 @@ body{
     .fixed-action-btn ul li {
         margin-bottom: 1em;
     }
+    .fixed-action-btn a{
+        text-decoration: none;
+    }
     ul:not(.browser-default)>li {
         list-style-type: none;
     }
@@ -109,14 +112,9 @@ body{
         padding: 0;
         width: 2.5em;
         height: 2.5em;
+        background: var(--primair_color);
 
         @include tn-flex-row;
-    }
-    .btn-floating:hover {
-        background-color: #26a69a;
-    }
-    .btn:hover, .btn-large:hover, .btn-small:hover {
-        background-color: #2bbbad;
     }
     .z-depth-1-half, .btn:hover, .btn-large:hover, .btn-small:hover, .btn-floating:hover {
         -webkit-box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
@@ -198,7 +196,8 @@ body{
 
                     select{
                         border-radius: var(--border1);
-                        background: var(--secondary_container);
+                        //background: var(--secondary_container);
+                        background: var(--w);
                         border: 1px solid var(--grey1);
                     }
                 }
@@ -213,7 +212,8 @@ body{
                     justify-content: center;
                     align-content: center;
                     padding: 0 1em;
-                    background: var(--secondary_container);
+                    //background: var(--secondary_container);
+                    background: var(--w);
                     border: 1px solid var(--grey1);
                 }
             }
@@ -227,6 +227,7 @@ body{
                 width: 100%!important;
                 @include tn-flex-row;
                 justify-content: space-between;
+                line-height: 2;
 
                 .shortcuts{
                     width: auto!important;

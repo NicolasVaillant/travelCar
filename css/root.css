@@ -51,9 +51,11 @@ body{
         --main_container : #2E383D;
         --main_title : #fff;
         --primair_color : #399BA1;
+        --primair_color_op : #256b6f;
         --element : #fff;
         --secondary_container : #D7D7D7;
-        --secondary_title : #8D8D8D;
+        /*--secondary_title : #8D8D8D;*/
+        --secondary_title : var(--w);
         --client : #01B1FE;
         --link_visited : var(--client);
         --button: #878890;
