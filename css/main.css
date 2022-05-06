@@ -9,6 +9,89 @@ body {
   background: var(--main_container);
   position: relative;
 }
+body .hide-static-btt {
+  transform: translateY(10vh) scale(0) !important;
+}
+body .fixed-action-btn.direction-left, body .fixed-action-btn.direction-right {
+  padding: 0 0 0 15px;
+}
+body .fixed-action-btn {
+  position: fixed;
+  right: 23px;
+  bottom: 23px;
+  padding-top: 15px;
+  margin-bottom: 0;
+  z-index: 9997;
+  transform: translateY(0) scale(1);
+  transition: all 0.2s !important;
+}
+body .btn-floating {
+  display: inline-block;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 40px;
+  padding: 0;
+  background-color: #26a69a;
+  border-radius: 50%;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  vertical-align: middle;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
+body .fixed-action-btn.active ul {
+  visibility: visible;
+}
+body .fixed-action-btn ul {
+  left: 0;
+  right: 0;
+  text-align: center;
+  position: absolute;
+  bottom: 5em;
+  margin: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  flex-direction: column;
+}
+body .fixed-action-btn ul li {
+  margin-bottom: 1em;
+}
+body ul:not(.browser-default) > li {
+  list-style-type: none;
+}
+body .btn-floating.btn-large {
+  padding: 0;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
+body .btn-floating:hover {
+  background-color: #26a69a;
+}
+body .btn:hover, body .btn-large:hover, body .btn-small:hover {
+  background-color: #2bbbad;
+}
+body .z-depth-1-half, body .btn:hover, body .btn-large:hover, body .btn-small:hover, body .btn-floating:hover {
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
 body main {
   width: 100%;
   height: auto;
@@ -44,8 +127,7 @@ body main .header .content--beforeTravel h1 {
 body main .header .content--beforeTravel div[class^=shortcut] a {
   border: 1px solid var(--grey1);
 }
-body main .header .content--beforeTravel div[class^=shortcut] a,
-body main .header .content--beforeTravel .banner--timer {
+body main .header .content--beforeTravel div[class^=shortcut] a {
   background: var(--button);
   padding: 1em;
   border-radius: var(--border1);
@@ -67,9 +149,19 @@ body main .header .content--beforeTravel .shortcuts {
   gap: 0.5em;
   font-size: 25px;
 }
-body main .header .content--beforeTravel .banner--timer {
+body main .header .banner--timer {
+  background: var(--button);
+  padding: 1em;
+  border-radius: var(--border1);
+  width: 100%;
+  text-decoration: none;
+  color: black;
   width: 100%;
   background: var(--banner);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 body main .header .bottom--line {
   display: flex;
@@ -131,6 +223,7 @@ body main .header.travel--on--style .content--beforeTravel {
 body main .header.travel--on--style .content--beforeTravel .shortcuts {
   width: auto !important;
   height: auto !important;
+  display: none;
 }
 body main .header.travel--on--style .content--beforeTravel .shortcuts a[class^=shortcut] {
   border-radius: 1000px !important;

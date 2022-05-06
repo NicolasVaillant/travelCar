@@ -241,6 +241,7 @@ function setHeight(){
         }
     }
 }
+
 let lastStep = []
 function timeLineProgress(timelineHeight, timelineTop){
     const current = getCurrentTime()
@@ -744,4 +745,20 @@ window.onload = function (){
     )
 }
 
+const fixed_action_btn = document.querySelector('.fixed-action-btn')
+// fixed_action_btn.classList.remove('hide-static-btt')
 
+let arrButton = []
+
+setInterval(() => {
+    arrButton.push(window.scrollY)
+    if(arrButton[arrButton.length - 2] === window.scrollY){
+        fixed_action_btn.classList.remove('hide-static-btt')
+    }else{
+        fixed_action_btn.classList.add('hide-static-btt')
+    }
+}, 200)
+
+// window.onscroll = function (){
+//     fixed_action_btn.classList.remove('hide-static-btt')
+// }
