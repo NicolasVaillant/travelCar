@@ -28,7 +28,7 @@ body .fixed-action-btn {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  padding: 2em;
+  padding: 4em 2em;
 }
 body .fixed-action-btn .btn-floating {
   display: flex;
@@ -41,7 +41,7 @@ body .fixed-action-btn .btn-floating {
   padding: 0;
   transform: scale(1);
   transition: all 0.2s !important;
-  background-color: var(--primair_color_op);
+  background: var(--primair_color_op);
   border-radius: 50%;
   cursor: pointer;
   vertical-align: middle;
