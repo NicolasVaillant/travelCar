@@ -67,7 +67,7 @@
     <!-- Compiled and minified CSS -->
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
     
     <link rel="start" title="Thérence F. | Plan de route" href="index.html" />
     <title>Thérence F. | Plan de route</title>
@@ -75,24 +75,32 @@
 
 <body>
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
+    <div class="btn-floating btn-large">
         <i class="fas fa-plus"></i>
-    </a>
-    <ul>
-        <li><a class="btn-floating shortcut--sms" aria-label="Raccourci SMS"><i class="fas fa-comments"></i></a></li>
-        <li><a class="btn-floating shortcut--call" aria-label="Raccourci Appel"><i class="fas fa-phone-alt"></i></a></li>
-    </ul>
+        <div>
+            <span>
+                <a class="btn-floating" href="#anchor--car" aria-label="Renvoie vers les informations de la voiture">
+                    <i class="fas fa-car"></i>
+                    Informations sur la voiture
+                </a>
+            </span>
+            <span>
+                <a class="btn-floating shortcut--sms" aria-label="Raccourci SMS">
+                    <i class="fas fa-comments"></i>
+                    Envoie moi un SMS
+                </a>
+            </span>
+            <span>
+                <a class="btn-floating shortcut--call" aria-label="Raccourci Appel">
+                    <i class="fas fa-phone-alt"></i>
+                    Appel moi
+                </a>
+            </span>
+        </div>
+    </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.fixed-action-btn');
-        var instances = M.FloatingActionButton.init(elems, {
-            direction: 'top',
-            hoverEnabled: false
-        });
-    });
-</script>
-<main class="disabled--main">
+<!--<main class="disabled&#45;&#45;main">-->
+<main class="">
     <!--header infos-->
     <div class="header">
         <div class="content--beforeTravel">
@@ -110,7 +118,6 @@
             <label for="name--main">Qui êtes-vous ?
                 <select name="name--main" id="name--main"></select>
             </label>
-            <a href="#anchor--car" aria-label="Renvoie vers les informations de la voiture"><i class="fas fa-car"></i></a>
         </div>
         <div class="banner--timer">
             <p class="time_left"></p>

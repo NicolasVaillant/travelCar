@@ -721,8 +721,9 @@ window.onload = function (){
         !localStorage.getItem("first_connection_timeCARLine") === "true") {
 
         button_modal.closest('.modal').classList.remove('close--modal')
-        main.classList.add('disabled--main')
-        body.classList.add('disabled--body')
+        //TODO: add
+        // main.classList.add('disabled--main')
+        // body.classList.add('disabled--body')
 
         // localStorage.setItem("first_connection_timeCARLine", "true");
     }
@@ -759,6 +760,27 @@ setInterval(() => {
     }
 }, 200)
 
-// window.onscroll = function (){
-//     fixed_action_btn.classList.remove('hide-static-btt')
-// }
+window.onscroll = function (){
+    fixed_action_btn.classList.remove('active--dynamic--btt')
+    btn_floating_i.classList.remove('active--anim--i')
+    btn_floating.classList.remove('active--anim')
+}
+
+const btn_floating = document.querySelector('.btn-floating')
+const btn_floating_i = document.querySelector('.btn-floating i')
+
+btn_floating.addEventListener('click', () => {
+    fixed_action_btn.classList.toggle('active--dynamic--btt')
+
+    btn_floating.classList.add('active--anim')
+
+    setTimeout(() =>{
+        btn_floating.classList.remove('active--anim')
+    }, 200)
+
+    if(fixed_action_btn.classList.contains('active--dynamic--btt')){
+        btn_floating_i.classList.add('active--anim--i')
+    }else{
+        btn_floating_i.classList.remove('active--anim--i')
+    }
+}, false)
