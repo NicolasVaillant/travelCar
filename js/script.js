@@ -722,8 +722,8 @@ window.onload = function (){
 
         button_modal.closest('.modal').classList.remove('close--modal')
         //TODO: add
-        // main.classList.add('disabled--main')
-        // body.classList.add('disabled--body')
+        main.classList.add('disabled--main')
+        body.classList.add('disabled--body')
 
         // localStorage.setItem("first_connection_timeCARLine", "true");
     }

@@ -60,7 +60,7 @@ body{
         position: fixed;
         transform: translateY(0) scale(1);
         transition: all .2s!important;
-        z-index: 99999;
+        z-index: 9999;
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
@@ -395,7 +395,7 @@ body{
                     background: var(--primair_color);
                     border: 0;
                     min-height: 0!important;
-                    z-index: 9999;
+                    z-index: 9998;
 
                     i{
                         position: absolute;
@@ -555,7 +555,7 @@ body{
     }
 
     .modal{
-        display: none!important;
+        //display: none!important;
         z-index: 99999;
         min-width: 200px;
         width: 80%;

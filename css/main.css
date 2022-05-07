@@ -22,7 +22,7 @@ body .fixed-action-btn {
   position: fixed;
   transform: translateY(0) scale(1);
   transition: all 0.2s !important;
-  z-index: 99999;
+  z-index: 9999;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -378,7 +378,7 @@ body main .content .timeline .timeline--line--evolution {
   background: var(--primair_color);
   border: 0;
   min-height: 0 !important;
-  z-index: 9999;
+  z-index: 9998;
 }
 body main .content .timeline .timeline--line--evolution i {
   position: absolute;
@@ -535,7 +535,6 @@ body .footer--copyright a:active {
   color: var(--link_visited);
 }
 body .modal {
-  display: none !important;
   z-index: 99999;
   min-width: 200px;
   width: 80%;
