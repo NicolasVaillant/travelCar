@@ -1,3 +1,5 @@
+[![pages-build-deployment](https://github.com/NicolasVaillant/travelCar/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/NicolasVaillant/travelCar/actions/workflows/pages/pages-build-deployment)
+
 # travelCar
 Set a car trip with customers
 
