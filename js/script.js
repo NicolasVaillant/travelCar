@@ -784,7 +784,7 @@ btn_floating.addEventListener('click', () => {
 
     if(fixed_action_btn.classList.contains('active--dynamic--btt')){
         btn_floating_i.classList.add('active--anim--i')
-        btn_bg.style.transform = `translate(-50%,-50%) scale(${factor})`
+        btn_bg.style.transform = `translate(-50%,-50%) scale(${factor}, ${2*factor})`
     }else{
         btn_floating_i.classList.remove('active--anim--i')
         btn_bg.style.transform = " translate(-50%,-50%) scale(.5)"

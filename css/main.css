@@ -55,11 +55,13 @@ body .fixed-action-btn .btn-floating {
   flex-direction: row;
 }
 body .fixed-action-btn .btn-floating i:not(.fa-plus) {
-  transform: rotate(0);
-  transition: all 0.2s !important;
   background: #ffffff2b;
   padding: 0.5em;
   border-radius: 1000px;
+}
+body .fixed-action-btn .btn-floating .fa-plus {
+  transform: rotate(0);
+  transition: all 0.2s !important;
 }
 body .fixed-action-btn .btn-floating div {
   font-size: 20px;
@@ -115,8 +117,6 @@ body .fixed-action-btn .btn--bg {
   left: 50%;
   background: #2a2929d9;
   transform: translate(-50%, -50%) scale(0.5);
-  transition: all 0.2s !important;
-  border-radius: 1000px;
 }
 body .fixed-action-btn.active--dynamic--btt .btn-floating div {
   visibility: visible;
