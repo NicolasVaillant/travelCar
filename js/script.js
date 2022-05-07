@@ -776,7 +776,7 @@ btn_floating.addEventListener('click', () => {
     btn_floating.classList.add('active--anim')
     setTimeout(() =>{
         btn_floating.classList.remove('active--anim')
-    }, 200)
+    }, 100)
 
     let diag = Math.sqrt(window.innerHeight*window.innerHeight + window.innerWidth*window.innerWidth)
     let size = window.innerHeight*.1
