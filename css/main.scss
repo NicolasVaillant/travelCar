@@ -60,13 +60,15 @@ body{
         position: fixed;
         transform: translateY(0) scale(1);
         transition: all .2s!important;
-        width: 100%;
-        height: 100vh;
         z-index: 99999;
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        padding: 4em 2em;
+        width: auto;
+        height: auto;
+        bottom: 2em;
+        right: 2em;
+        padding: 0;
 
         .btn-floating{
             display: flex;
@@ -79,15 +81,18 @@ body{
             padding: 0;
             transform: scale(1);
             transition: all .2s!important;
-            background: var(--primair_color_op);
+            background: var(--primair_color);
             border-radius: 50%;
             cursor: pointer;
             vertical-align: middle;
             font-size: 2em;
 
-            i{
+            i:not(.fa-plus){
                 transform: rotate(0);
                 transition: all .2s!important;
+                background: #ffffff2b;
+                padding: .5em;
+                border-radius: 1000px;
             }
 
             @include tn-flex-row;
@@ -99,7 +104,7 @@ body{
                 bottom: 4em;
                 margin: 0;
                 visibility: hidden;
-                transition: .4s all!important;
+                transition: .2s all!important;
                 transform: translate(-50%, 10vh) scale(0);
                 opacity: 0;
                 left: 50%;
@@ -120,9 +125,9 @@ body{
                     width: 100%;
                     height: auto;
                     border-radius: 1000px;
-                    padding: 0.5em 1em;
+                    padding: 0.5em 1em 0.5em 0.5em;
                     display: flex;
-                    gap: 1em;
+                    gap: 0.5em;
                 }
             }
 
@@ -130,14 +135,26 @@ body{
                 padding: 0;
                 width: 2.5em;
                 height: 2.5em;
-                background: var(--primair_color);
+                //background: var(--primair_color);
+                background: #c4447c;
 
                 @include tn-flex-row;
             }
         }
 
-        &.active--dynamic--btt{
+        .btn--bg{
+            width: 10vh;
+            height: 10vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
             background: #2a2929d9;
+            transform: translate(-50%,-50%) scale(.5);
+            transition: all .2s!important;
+            border-radius: 1000px;
+        }
+
+        &.active--dynamic--btt{
             .btn-floating div {
                 visibility: visible;
                 transform: translate(-50%, 0) scale(1);
@@ -334,7 +351,8 @@ body{
                     &.start_trip{
                         background: var(--primair_color);
                         border: 1px solid var(--primair_color);
-                        color:#0b2935!important;
+                        //color:#0b2935!important;
+                        color: var(--w)!important;
                     }
                 }
 

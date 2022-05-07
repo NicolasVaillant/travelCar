@@ -747,6 +747,7 @@ window.onload = function (){
 }
 
 const fixed_action_btn = document.querySelector('.fixed-action-btn')
+const btn_bg = document.querySelector('.btn--bg')
 // fixed_action_btn.classList.remove('hide-static-btt')
 
 let arrButton = []
@@ -764,6 +765,7 @@ window.onscroll = function (){
     fixed_action_btn.classList.remove('active--dynamic--btt')
     btn_floating_i.classList.remove('active--anim--i')
     btn_floating.classList.remove('active--anim')
+    btn_bg.style.transform = " translate(-50%,-50%) scale(.5)"
 }
 
 const btn_floating = document.querySelector('.btn-floating')
@@ -771,16 +773,20 @@ const btn_floating_i = document.querySelector('.btn-floating i')
 
 btn_floating.addEventListener('click', () => {
     fixed_action_btn.classList.toggle('active--dynamic--btt')
-
     btn_floating.classList.add('active--anim')
-
     setTimeout(() =>{
         btn_floating.classList.remove('active--anim')
     }, 200)
 
+    let diag = Math.sqrt(window.innerHeight*window.innerHeight + window.innerWidth*window.innerWidth)
+    let size = window.innerHeight*.1
+    let factor = Math.ceil(diag)/Math.ceil(size)
+
     if(fixed_action_btn.classList.contains('active--dynamic--btt')){
         btn_floating_i.classList.add('active--anim--i')
+        btn_bg.style.transform = `translate(-50%,-50%) scale(${factor})`
     }else{
         btn_floating_i.classList.remove('active--anim--i')
+        btn_bg.style.transform = " translate(-50%,-50%) scale(.5)"
     }
 }, false)
