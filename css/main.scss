@@ -535,9 +535,32 @@ body{
                             }
                         }
 
-                        .numbers{
-                            font-size: 48px;
+                        .num{
+                            @include tn-flex-row;
+                            .numbers{
+                                font-size: 48px;
+                                position: relative;
+
+                                .hide{
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    --stripe1 : var(--main_container);
+                                    --stripe2 : var(--timeline);
+                                    background: repeating-linear-gradient(
+                                                    45deg,
+                                                    var(--stripe1),
+                                                    var(--stripe1) 10px,
+                                                    var(--stripe2) 10px,
+                                                    var(--stripe2) 20px
+                                    );
+                                    border-radius: var(--border1);
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                            }
                         }
+
                     }
 
                     img{

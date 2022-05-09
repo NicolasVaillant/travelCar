@@ -523,8 +523,27 @@ body main .car--info .inside .wrapper .im--car .col-l p,
 body main .car--info .inside .wrapper .im--car .col-r p {
   color: var(--w);
 }
-body main .car--info .inside .wrapper .im--car .numbers {
+body main .car--info .inside .wrapper .im--car .num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
+body main .car--info .inside .wrapper .im--car .num .numbers {
   font-size: 48px;
+  position: relative;
+}
+body main .car--info .inside .wrapper .im--car .num .numbers .hide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  --stripe1: var(--main_container);
+  --stripe2: var(--timeline);
+  background: repeating-linear-gradient(45deg, var(--stripe1), var(--stripe1) 10px, var(--stripe2) 10px, var(--stripe2) 20px);
+  border-radius: var(--border1);
+  height: 100%;
+  width: 100%;
 }
 body main .car--info .inside .wrapper img {
   width: 100%;
