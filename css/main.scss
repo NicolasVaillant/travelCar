@@ -65,7 +65,7 @@ body{
         justify-content: flex-end;
         align-items: flex-end;
         height: auto;
-        bottom: 2em;
+        bottom: 0;
         right: 0;
         padding: 0;
         width: 100%;
@@ -94,33 +94,38 @@ body{
                 padding: .5em;
                 border-radius: 1000px;
             }
-            .fa-plus{
-                transform: rotate(0);
-                font-size: 22px;
-                transition: all .2s!important;
+            .container-i{
                 padding: 1em;
                 border-radius: 100px;
                 background: #c4447c;
                 aspect-ratio: 1;
                 width: 20%;
-
+                transition: all .2s!important;
                 @include tn-flex-row;
+
+                .fa-plus{
+                    transform: rotate(0);
+                    font-size: 22px;
+                    transition: all .2s!important;
+                }
             }
+
 
             @include tn-flex-row;
 
-            div {
+            div:not(.container-i) {
                 font-size: 18px;
                 text-align: center;
                 position: absolute;
                 bottom: 4em;
-                margin: 0;
                 visibility: hidden;
                 transition: .2s all!important;
-                transform: translate(-50%, 10vh) scale(0);
                 opacity: 0;
-                left: 50%;
+                right: 0;
                 width: 100%;
+                max-width: 100%;
+                height: 0;
+                margin: 0;
 
                 @include tn-flex-row;
                 flex-direction: column;
@@ -128,17 +133,33 @@ body{
 
                 span {
                     margin-bottom: 1em;
+                    white-space: nowrap;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transform: translate(0, -50%)!important;
+                    width: auto;
+                    transition: all .2s!important;
+
+                    &:nth-child(2){
+                        top: 50%;
+                    }
+
+                    &:last-child{
+                        top: 100%;
+                    }
                 }
                 a:not(i){
                     text-decoration: none;
                     font-weight: bold;
                     font-size: 1em;
-                    white-space: nowrap;
+                    //white-space: nowrap;
                     width: 100%;
                     height: auto;
                     border-radius: 1000px;
                     padding: 0.5em 1em 0.5em 0.5em;
                     display: flex;
+                    align-items: center;
                     gap: 0.5em;
                 }
             }
@@ -159,11 +180,15 @@ body{
         }
 
         &.active--dynamic--btt{
-            .btn-floating div {
+            .btn-floating div:not(.container-i) {
                 visibility: visible;
-                transform: translate(-50%, 0) scale(1);
+                height: 20vh;
+                margin: 0 0 3em;
                 opacity: 1;
             }
+        }
+        .spanActive{
+            opacity: 1;
         }
     }
 

@@ -747,6 +747,7 @@ window.onload = function (){
 }
 
 const fixed_action_btn = document.querySelector('.fixed-action-btn')
+const span = document.querySelectorAll('.fixed-action-btn span')
 const btn_bg = document.querySelector('.btn--bg')
 // fixed_action_btn.classList.remove('hide-static-btt')
 
@@ -763,18 +764,22 @@ setInterval(() => {
 
 window.onscroll = function (){
     fixed_action_btn.classList.remove('active--dynamic--btt')
+    span.forEach(e => {
+        e.classList.remove('spanActive')
+    })
     btn_floating_i.classList.remove('active--anim--i')
-    btn_floating_i.classList.remove('active--anim')
+    container_i.classList.remove('active--anim')
     btn_bg.style.transform = "scale(.1)"
 }
 
+const container_i = document.querySelector('.container-i')
 const btn_floating_i = document.querySelector('.btn-floating i')
 
-btn_floating_i.addEventListener('click', () => {
+container_i.addEventListener('click', () => {
     fixed_action_btn.classList.toggle('active--dynamic--btt')
-    btn_floating_i.classList.add('active--anim')
+    container_i.classList.add('active--anim')
     setTimeout(() =>{
-        btn_floating_i.classList.remove('active--anim')
+        container_i.classList.remove('active--anim')
     }, 100)
 
     let diag = Math.sqrt(window.innerHeight*window.innerHeight + window.innerWidth*window.innerWidth)
@@ -782,9 +787,17 @@ btn_floating_i.addEventListener('click', () => {
     let factor = Math.ceil(diag)/Math.ceil(size)
 
     if(fixed_action_btn.classList.contains('active--dynamic--btt')){
+        span.forEach((e,index) => {
+            setTimeout(() => {
+                e.classList.add('spanActive')
+            }, index*100)
+        })
         btn_floating_i.classList.add('active--anim--i')
         btn_bg.style.transform = `scale(${factor}, ${2*factor})`
     }else{
+        span.forEach(e => {
+            e.classList.remove('spanActive')
+        })
         btn_floating_i.classList.remove('active--anim--i')
         btn_bg.style.transform = "scale(.1)"
     }
