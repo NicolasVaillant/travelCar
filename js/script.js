@@ -625,7 +625,7 @@ function setShortcutButton(){
     const shortcut__sms = document.querySelector('.shortcut--sms')
     const shortcut__call = document.querySelector('.shortcut--call')
 
-    let msg = `Salut%20Thérence.%0D%0AC'est${steps_clients[name__main.value]}.%0D%0A`
+    let msg = `Salut%20Thérence,%0D%0AC'est%20${steps_clients[name__main.value]}.%0D%0A`
 
     if(support === "Apple"){
         shortcut__sms.href = "sms://open?addresses=+33667167160/&body=" + msg
