@@ -124,8 +124,10 @@ body{
                 right: 0;
                 width: 100%;
                 max-width: 100%;
-                height: 0;
-                margin: 0;
+                height: 20vh;
+                transform: translateY(10vh) scaleY(0);
+                transform-origin: bottom;
+                margin: 0 0 3em;
 
                 @include tn-flex-row;
                 flex-direction: column;
@@ -182,8 +184,7 @@ body{
         &.active--dynamic--btt{
             .btn-floating div:not(.container-i) {
                 visibility: visible;
-                height: 20vh;
-                margin: 0 0 3em;
+                transform: translateY(0) scaleY(1);
                 opacity: 1;
             }
         }

@@ -790,7 +790,7 @@ container_i.addEventListener('click', () => {
         span.forEach((e,index) => {
             setTimeout(() => {
                 e.classList.add('spanActive')
-            }, index*100)
+            }, index*200)
         })
         btn_floating_i.classList.add('active--anim--i')
         btn_bg.style.transform = `scale(${factor}, ${2*factor})`
