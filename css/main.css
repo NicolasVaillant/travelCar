@@ -64,8 +64,8 @@ body .fixed-action-btn .btn-floating .container-i {
   padding: 1em;
   border-radius: 100px;
   background: #44c4a0;
-  width: 5em;
-  height: 5em;
+  width: 8vh;
+  height: 8vh;
   aspect-ratio: 1;
   transition: all 0.2s !important;
   display: flex;
