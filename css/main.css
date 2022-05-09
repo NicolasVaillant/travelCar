@@ -26,33 +26,34 @@ body .fixed-action-btn {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  width: auto;
   height: auto;
   bottom: 2em;
-  right: 2em;
+  right: 0;
   padding: 0;
+  width: 100%;
 }
 body .fixed-action-btn .btn-floating {
   display: flex;
   color: #fff;
   position: relative;
   z-index: 1;
-  width: 1.8em;
-  height: 1.8em;
+  height: auto;
   line-height: 40px;
   padding: 0;
   transform: scale(1);
   transition: all 0.2s !important;
-  background: var(--primair_color);
-  border-radius: 50%;
   cursor: pointer;
-  vertical-align: middle;
-  font-size: 2em;
+  width: 100%;
+  margin: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
   align-content: center;
   flex-direction: row;
+}
+body .fixed-action-btn .btn-floating.child {
+  background: var(--primair_color);
+  margin: 0;
 }
 body .fixed-action-btn .btn-floating i:not(.fa-plus) {
   background: #ffffff2b;
@@ -61,10 +62,21 @@ body .fixed-action-btn .btn-floating i:not(.fa-plus) {
 }
 body .fixed-action-btn .btn-floating .fa-plus {
   transform: rotate(0);
+  font-size: 22px;
   transition: all 0.2s !important;
+  padding: 1em;
+  border-radius: 100px;
+  background: #c4447c;
+  aspect-ratio: 1;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
 }
 body .fixed-action-btn .btn-floating div {
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   position: absolute;
   bottom: 4em;
@@ -100,32 +112,24 @@ body .fixed-action-btn .btn-floating div a:not(i) {
 }
 body .fixed-action-btn .btn-floating.btn-large {
   padding: 0;
-  width: 2.5em;
-  height: 2.5em;
-  background: #c4447c;
   display: flex;
   align-items: center;
   justify-content: center;
   align-content: center;
   flex-direction: row;
+  justify-content: flex-end;
 }
 body .fixed-action-btn .btn--bg {
   width: 10vh;
   height: 10vh;
   position: absolute;
-  top: 50%;
-  left: 50%;
   background: #2a2929d9;
-  transform: translate(-50%, -50%) scale(0.5);
+  transform: scale(0.1);
 }
 body .fixed-action-btn.active--dynamic--btt .btn-floating div {
   visibility: visible;
   transform: translate(-50%, 0) scale(1);
   opacity: 1;
-}
-body .z-depth-1-half, body .btn:hover, body .btn-large:hover, body .btn-small:hover, body .btn-floating:hover {
-  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
 }
 body main {
   width: 100%;
