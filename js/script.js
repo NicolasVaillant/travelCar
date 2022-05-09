@@ -34,10 +34,8 @@ name__main.addEventListener('change', () => {
     for (let i = 0; i < steps_hours.length; i++) {
         let nb = 0
         let container = dot__step[i].closest('.container')
-        console.log(container)
         if(container.classList.contains('remove--display--client')){
             nb++
-            console.log(container.offsetHeight)
         }
         const client = document.querySelectorAll('.client')
         client.forEach(e => {
@@ -48,6 +46,7 @@ name__main.addEventListener('change', () => {
         })
     }
     clientDisplay(name__main.value)
+    setShortcutButton()
 })
 
 nb__luggage.addEventListener('keyup', () => {
@@ -472,6 +471,7 @@ function submitModal(callback){
         console.error(e)
     }
 
+    setShortcutButton()
     callback()
 }
 
@@ -625,7 +625,7 @@ function setShortcutButton(){
     const shortcut__sms = document.querySelector('.shortcut--sms')
     const shortcut__call = document.querySelector('.shortcut--call')
 
-    let msg = "Salut%20Thérence,%20"
+    let msg = `Salut%20Thérence.%0D%0AC'est${steps_clients[name__main.value]}.%0D%0A`
 
     if(support === "Apple"){
         shortcut__sms.href = "sms://open?addresses=+33667167160/&body=" + msg
@@ -728,8 +728,6 @@ window.onload = function (){
         // localStorage.setItem("first_connection_timeCARLine", "true");
     }
 
-    setShortcutButton()
-
     setLabels(steps_clients, name__modal)
     setLabels(type_luggage, luggage__modal)
     setLabels(steps_clients, name__main)
@@ -764,12 +762,16 @@ setInterval(() => {
 
 window.onscroll = function (){
     fixed_action_btn.classList.remove('active--dynamic--btt')
-    span.forEach(e => {
-        e.classList.remove('spanActive')
+    span.forEach((e,index) => {
+        setTimeout(() => {
+            e.classList.remove('spanActive')
+        }, index*60)
+        if(index === span.length - 1){
+            btn_floating_i.classList.remove('active--anim--i')
+            container_i.classList.remove('active--anim')
+            btn_bg.style.transform = "scale(.1)"
+        }
     })
-    btn_floating_i.classList.remove('active--anim--i')
-    container_i.classList.remove('active--anim')
-    btn_bg.style.transform = "scale(.1)"
 }
 
 const container_i = document.querySelector('.container-i')
@@ -795,10 +797,14 @@ container_i.addEventListener('click', () => {
         btn_floating_i.classList.add('active--anim--i')
         btn_bg.style.transform = `scale(${factor}, ${2*factor})`
     }else{
-        span.forEach(e => {
-            e.classList.remove('spanActive')
+        span.forEach((e,index) => {
+            setTimeout(() => {
+                e.classList.remove('spanActive')
+            }, index*60)
+            if(index === span.length - 1){
+                btn_floating_i.classList.remove('active--anim--i')
+                btn_bg.style.transform = "scale(.1)"
+            }
         })
-        btn_floating_i.classList.remove('active--anim--i')
-        btn_bg.style.transform = "scale(.1)"
     }
 }, false)
