@@ -754,5 +754,46 @@ body .modal .content .footer--submit .remove--input {
   background: none;
   color: var(--main_title);
 }
+body .desktopContainer {
+  display: none;
+}
+@media screen and (min-width: 600px) {
+  body .desktopContainer {
+    display: flex !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999999;
+    background: var(--main_container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+  }
+  body .desktopContainer .wrapper {
+    color: var(--main_title);
+    width: 60%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+  }
+  body .desktopContainer .wrapper img {
+    width: 50%;
+    height: auto;
+  }
+  body .desktopContainer .wrapper h1 {
+    font-weight: initial;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */

@@ -733,4 +733,40 @@ body{
         }
 
     }
+
+    .desktopContainer{
+        display: none;
+    }
+
+    @media screen and (min-width: 600px) {
+        .desktopContainer{
+            display: flex!important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 9999999;
+            background: var(--main_container);
+            @include tn-flex-column;
+
+            .wrapper{
+                color: var(--main_title);
+                width: 60%;
+                height: auto;
+                @include tn-flex-column;
+                @include justify-left;
+                gap: 1em;
+
+                img{
+                    width: 50%;
+                    height: auto;
+                }
+                h1{
+                    font-weight: initial;
+                }
+            }
+
+        }
+    }
 }

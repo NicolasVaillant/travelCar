@@ -707,8 +707,6 @@ function nextStepEvent(){
 
 let support = ""
 window.onload = function (){
-
-    window.scroll(0, 0)
     setStepsClients()
 
     if((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1) || (navigator.platform.indexOf("iPad") !== -1)){
@@ -742,6 +740,8 @@ window.onload = function (){
             console.log(error)
         }
     )
+    // window.scroll(0, 0)
+    body.scrollIntoView()
 }
 
 const fixed_action_btn = document.querySelector('.fixed-action-btn')
@@ -808,3 +808,4 @@ container_i.addEventListener('click', () => {
         })
     }
 }, false)
+
