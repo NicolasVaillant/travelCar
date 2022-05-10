@@ -544,6 +544,7 @@ body main .car--info .inside .wrapper .im--car .num .numbers .hide {
   border-radius: var(--border1);
   height: 100%;
   width: 100%;
+  border: 1px solid var(--timeline);
 }
 body main .car--info .inside .wrapper img {
   width: 100%;

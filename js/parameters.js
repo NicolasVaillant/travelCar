@@ -1,14 +1,14 @@
 //JS FILE
 
 //Date ISO pls YYYY-MM-DD
-const dayOfTravel = "May 07 2022"
+const dayOfTravel = "May 10 2022"
 const refreshInterval = 1000
 
 const steps_hours = [
-    "07:30:00",
-    "08:10:00",
-    "11:27:00",
-    "19:11:00"
+    "11:30:00",
+    "14:10:00",
+    "18:27:00",
+    "22:11:00"
 ]
 
 const steps_cities = [
