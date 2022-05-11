@@ -767,16 +767,20 @@ body .desktopContainer {
     height: 100vh;
     z-index: 9999999;
     background: var(--main_container);
+  }
+  body .desktopContainer .all {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-  }
-  body .desktopContainer .wrapper {
-    color: var(--main_title);
     width: 60%;
     height: auto;
+    margin: auto;
+  }
+  body .desktopContainer .all .wrapper {
+    color: var(--main_title);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -786,13 +790,36 @@ body .desktopContainer {
     align-content: flex-start;
     align-items: flex-start;
     gap: 1em;
+    background: var(--main_container);
+    box-shadow: 0 6px 14px 2px var(--box_shadow);
+    border-radius: var(--border1);
+    padding: 2em;
+    z-index: 0;
   }
-  body .desktopContainer .wrapper img {
+  body .desktopContainer .all .wrapper img {
     width: 50%;
     height: auto;
+    margin: 1em 0;
   }
-  body .desktopContainer .wrapper h1 {
+  body .desktopContainer .all .wrapper hr {
+    width: 100%;
+    border: 1px solid var(--grey1);
+  }
+  body .desktopContainer .all .wrapper h1 {
     font-weight: initial;
+  }
+  body .desktopContainer .all .wrapperBefore {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--main_container);
+    width: 100%;
+    height: 100%;
+    transform: scale(0.95);
+    margin-top: 1em;
+    box-shadow: 0 6px 14px 2px var(--box_shadow);
+    border-radius: var(--border1);
+    z-index: -1;
   }
 }
 
